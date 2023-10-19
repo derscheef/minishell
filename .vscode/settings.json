@@ -1,5 +1,8 @@
 {
   "editor.defaultFormatter": "keyhr.42-c-format",
   "editor.formatOnPaste": true,
-  "editor.formatOnSave": true
+"editor.formatOnSave": true,
+"files.associations": {
+	"signals.h": "c"
+}
 }
