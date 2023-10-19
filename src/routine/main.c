@@ -6,10 +6,11 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 13:43:55 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:23:44 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 #include "routine.h"
 
 // 1. Read input from readline
@@ -20,6 +21,7 @@
 void	routine(void)
 {
 	char	*input;
+	char	**tokens;
 
 	while (true)
 	{
@@ -27,5 +29,7 @@ void	routine(void)
 		if (!input)
 			exit_routine();
 		add_history(input);
+		tokens = lexer(input);
+		free(tokens);
 	}
 }

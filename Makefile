@@ -22,7 +22,10 @@ UTILS_FILES = string/split.c
 
 SRC_DIR = src
 SRC_FILES = main.c \
+$(addprefix $(LEXER_DIR)/,$(LEXER_FILES)) \
 $(addprefix $(ROUTINE_DIR)/,$(ROUTINE_FILES)) \
+$(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
+$(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \
 
 OBJ_DIR = obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC_FILES:.c=.o))
@@ -42,7 +45,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(NAME): $(OBJ_FILES)
 	@$(MAKE) all bonus -C ./lib/libft
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(INCLUDES)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(INCLUDES) -L ./lib/libft -lft
 
 
 

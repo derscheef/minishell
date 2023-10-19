@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 15:46:56 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:14:23 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,4 @@
 
 char	**lexer(char *str);
 
-#endif LEXER_H
+#endif
