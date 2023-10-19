@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/19 13:43:55 by ndivjak          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "routine.h"
 
 // 1. Read input from readline
@@ -7,10 +19,11 @@
 
 void	routine(void)
 {
-	// 1. Read input from readline
+	char	*input;
+
 	while (true)
 	{
-		char *input = readline("minishell> ");
+		input = readline("minishell> ");
 		if (!input)
 			exit_routine();
 		add_history(input);
