@@ -13,5 +13,6 @@ void	routine(void)
 		char *input = readline("minishell> ");
 		if (!input)
 			exit_routine();
+		add_history(input);
 	}
 }
