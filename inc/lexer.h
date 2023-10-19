@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 14:07:33 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/19 14:10:08 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/19 17:14:23 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+#ifndef LEXER_H
+# define LEXER_H
 
-# include <signal.h>
+char	**lexer(char *str);
 
 #endif

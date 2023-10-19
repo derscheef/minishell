@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 17:23:44 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/19 17:16:17 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "routine.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-// 1. Read input from readline
-// 2. Parse input
-// 3. Execute command
-// 4. Print output
+# include "../lib/libft/libft.h"
+# include <stddef.h>
+# include <stdio.h>
 
-void	routine(void)
-{
-	char	*input;
-	char	**tokens;
+char	**split_string(char *str, char *set);
 
-	while (true)
-	{
-		input = readline("minishell> ");
-		if (!input)
-			exit_routine();
-		add_history(input);
-		tokens = lexer(input);
-		free(tokens);
-	}
-}
+#endif

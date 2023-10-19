@@ -6,13 +6,12 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 14:13:17 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/19 18:26:43 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signal.h"
+#include "signals.h"
 
-// ctrl-c
 void	sigint_handler(int signum)
 {
 	(void)signum;
@@ -42,6 +41,5 @@ void	handle_signals(void)
 {
 	signal(SIGINT, sigint_handler);
 	signal(SIGTERM, sigterm_handler);
-	signall(SIGKILL, sigkill_handler);
-	signal(SIGQUIT, sigquit_handler);
+	signal(SIGKILL, sigkill_handler);
 }
