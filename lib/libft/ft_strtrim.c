@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:15:32 by ndivjak           #+#    #+#             */
-/*   Updated: 2022/10/16 18:33:03 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:30:37 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,25 @@ int	ft_end(char *s1, char *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
+	char	*str;
+	size_t	i;
+	size_t	start;
 	size_t	end;
-	char	*s_pos;
 
-	if (s1 && set)
-	{
-		s_pos = (char *)s1;
-		s_pos = ft_start(s_pos, (char *)set);
-		s1 += ft_strlen(s1) - 1;
-		end = ft_end((char *)s1, (char *)set);
-		return ((char *)ft_shitstr(s_pos, 0, ft_strlen(s_pos) - end));
-	}
-	else
-		return (0);
+	start = 0;
+	while (s1[start] && ft_char_in_set(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_char_in_set(s1[end - 1], set))
+		end--;
+	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = 0;
+	return (str);
 }
 
 // int	main(void)
