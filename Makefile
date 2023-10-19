@@ -1,3 +1,6 @@
+GREEN=\033[0;32m
+YELLOW=\033[1;33m
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -lreadline
@@ -28,7 +31,7 @@ INC_DIR = inc
 
 
 all: $(OBJ_DIR) $(NAME)
-	@echo "Compilation done"
+	@echo "${GREEN}Compilation done"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -46,12 +49,12 @@ $(NAME): $(OBJ_FILES)
 clean:
 	@$(MAKE) clean -C ./lib/libft
 	@rm -fr obj
-	@echo "Finished cleaning objects"
+	@echo "${YELLOW}Finished cleaning objects"
 
 fclean: clean
 	@$(MAKE) fclean -C ./lib/libft
 	@rm -f $(NAME)
-	@echo "Finished cleaning program"
+	@echo "${YELLOW}Finished cleaning program"
 
 re: fclean all
 
