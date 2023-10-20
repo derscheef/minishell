@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 17:50:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/20 14:34:46 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	**split_string(char *str, char *set)
 		return (NULL);
 	count = str_count(str, set);
 	tokens = ft_calloc(count + 1, sizeof(char *));
+	if (!tokens)
+		return (NULL);
 	ptr = tokens;
 	if (!tokens)
 		return (NULL);
