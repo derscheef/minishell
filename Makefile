@@ -16,6 +16,9 @@ ROUTINE_FILES = main.c exit.c
 SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
+TOKENS_DIR = tokens
+TOKENS_FILES = parse_string.c
+
 UTILS_DIR = utils
 UTILS_FILES = string/split.c string/skip_to_char.c string/rev_find_in_str.c \
 debug/print_tokens.c
@@ -26,6 +29,7 @@ SRC_FILES = main.c \
 $(addprefix $(LEXER_DIR)/,$(LEXER_FILES)) \
 $(addprefix $(ROUTINE_DIR)/,$(ROUTINE_FILES)) \
 $(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
+$(addprefix $(TOKENS_DIR)/,$(TOKENS_FILES)) \
 $(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \
 
 OBJ_DIR = obj

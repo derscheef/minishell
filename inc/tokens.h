@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tokens.c                                     :+:      :+:    :+:   */
+/*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 14:01:21 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 16:36:30 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/20 16:46:40 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/20 16:46:40 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokens.h"
-#include "utils.h"
+#ifndef TOKENS_H
+# define TOKENS_H
 
-void	print_tokens(t_token *tokens)
+# include <stddef.h>
+
+typedef enum e_token_type
 {
-	while (tokens)
-		printf("%s\n", tokens->value++);
-}
+	command,
+	argument,
+	redirect,
+	semicolon
+}					t_token_type;
+typedef struct s_token
+{
+	char			*value;
+	t_token_type	type;
+	size_t			index;
+}					t_token;
+
+t_token				*parse_string_to_tokens(char *str);
+
+#endif

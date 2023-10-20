@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 14:01:47 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/20 16:33:13 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include "../lib/libft/libft.h"
+# include "tokens.h"
 # include <stddef.h>
 # include <stdio.h>
 
@@ -23,6 +24,6 @@ char	*skip_to_char(char *str, char c);
 char	*rev_find_in_str(char *str, char *start, char c);
 
 // Debug utils
-void	print_tokens(char **tokens);
+void	print_tokens(t_token *tokens);
 
 #endif
