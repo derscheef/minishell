@@ -8,7 +8,7 @@ INCLUDES = -lreadline
 NAME = minishell
 
 LEXER_DIR = lexer
-LEXER_FILES = main.c
+LEXER_FILES = main.c is_syntax_valid.c \
 
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c exit.c
@@ -17,7 +17,8 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 UTILS_DIR = utils
-UTILS_FILES = string/split.c
+UTILS_FILES = string/split.c string/skip_to_char.c string/rev_find_in_str.c \
+debug/print_tokens.c
 
 
 SRC_DIR = src

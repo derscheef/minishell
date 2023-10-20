@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 13:58:51 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/20 14:01:21 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/20 14:35:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include "utils.h"
 
-# include <stdbool.h>
-
-char	**lexer(char *str);
-bool	is_syntax_valid(char *str);
-
-#endif
+void	print_tokens(char **tokens)
+{
+	while (*tokens)
+		printf("%s\n", *tokens++);
+}

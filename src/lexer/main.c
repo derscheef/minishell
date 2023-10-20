@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 17:15:39 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/20 14:00:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	**lexer(char *str)
 {
 	char	**tokens;
 
+	if (!is_syntax_valid(str))
+		return (NULL);
 	tokens = split_string(str, " \t\r\v\f\n");
 	return (tokens);
 }
