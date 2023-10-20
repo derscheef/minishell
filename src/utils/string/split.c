@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 14:34:46 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/20 14:35:23 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ char	**split_string(char *str, char *set)
 	if (!tokens)
 		return (NULL);
 	ptr = tokens;
-	if (!tokens)
-		return (NULL);
 	while (*str)
 	{
 		if (!ft_strchr(set, *str))
