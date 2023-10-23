@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:01:21 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 16:36:30 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/20 17:36:35 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 void	print_tokens(t_token *tokens)
 {
-	while (tokens)
-		printf("%s\n", tokens->value++);
+	printf("%s\n", tokens->value);
+	tokens++;
+	while (tokens->index)
+	{
+		printf("%s\n", tokens->value);
+		tokens++;
+	}
 }
