@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:07:33 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/19 23:23:14 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/23 19:40:02 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <termios.h>
 # include <unistd.h>
 
 void	sigint_handler(int signum);

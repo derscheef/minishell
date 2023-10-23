@@ -6,19 +6,34 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 23:23:35 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/23 19:36:39 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
+void	ft_putstr(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
+}
+
 // ctrl-C
 void	sigint_handler(int signum)
 {
-	(void)signum;
-	write(1, "\nminishell> ", 13);
-	rl_on_new_line();
-	rl_redisplay();
+	if (signum == SIGUSR1)
+		exit(EXIT_FAILURE);
+	if (signum == SIGINT)
+	{
+		ft_putstr("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	if (signum == SIGTERM)
+	{
+		exit(1);
+	}
 }
 
 // ctrl-backslash
@@ -30,6 +45,11 @@ void	sigquit_handler(int signum)
 
 void	handle_signals(void)
 {
+	struct termios term, oldterm;
+	tcgetattr(STDIN_FILENO, &oldterm);
+	term = oldterm;
+	term.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
 }
