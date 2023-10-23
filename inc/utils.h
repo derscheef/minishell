@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 16:33:13 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/23 18:55:30 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 char	**split_string(char *str, char *set);
 char	*skip_to_char(char *str, char c);
 char	*rev_find_in_str(char *str, char *start, char c);
+char	*skip_set(char *str, char *set);
+char	*skip_to_set(char *str, char *set);
 
 // Debug utils
 void	print_tokens(t_token *tokens);

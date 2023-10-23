@@ -17,10 +17,11 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 TOKENS_DIR = tokens
-TOKENS_FILES = parse_string.c
+TOKENS_FILES = parse_string.c skip_to_next.c
 
 UTILS_DIR = utils
 UTILS_FILES = string/split.c string/skip_to_char.c string/rev_find_in_str.c \
+string/skip_set.c string/skip_to_set.c \
 debug/print_tokens.c
 
 

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   skip_to_next.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:40 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 18:57:15 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/23 18:56:42 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/23 18:56:57 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "tokens.h"
+#include "utils.h"
 
-# include <stddef.h>
-
-typedef enum e_token_type
+char	*skip_to_next_token(char *str)
 {
-	command,
-	argument,
-	redirect,
-	semicolon
-}					t_token_type;
-typedef struct s_token
-{
-	char			*value;
-	t_token_type	type;
-	size_t			index;
-}					t_token;
-
-t_token				*parse_string_to_tokens(char *str);
-
-// Utility
-char				*skip_to_next_token(char *str);
-
-#endif
+	while (*str && !ft_strchr(" \t\r\v\f", *str))
+	{
+		if (ft_strchr("\'\"", *str))
+			str = skip_to_char(str + 1, *str);
+		str++;
+	}
+	return (str);
+}
