@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 19:43:51 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/24 11:30:07 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_putstr(char *str)
 }
 
 // ctrl-C
+// rl_replace_line("", 0);
 void	sigint_handler(int signum)
 {
 	if (signum == SIGUSR1)
@@ -26,7 +27,6 @@ void	sigint_handler(int signum)
 	if (signum == SIGINT)
 	{
 		ft_putstr("\n");
-		// rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
