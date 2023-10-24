@@ -6,11 +6,10 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:32:19 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 18:57:30 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/24 12:07:21 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokens.h"
 #include "utils.h"
 
 static char	*remove_quotes(char *str)
