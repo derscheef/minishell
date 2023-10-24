@@ -3,7 +3,7 @@ YELLOW=\033[1;33m
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -lreadline
+INCLUDES = -L /opt/homebrew/opt/readline/lib -lft -lreadline
 
 NAME = minishell
 
@@ -41,11 +41,11 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@  -I $(INC_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@  -I $(INC_DIR) -I /opt/homebrew/opt/readline/include
 
 $(NAME): $(OBJ_FILES)
 	@$(MAKE) all bonus -C ./lib/libft
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(INCLUDES) -L ./lib/libft -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L ./lib/libft $(INCLUDES)
 
 
 
