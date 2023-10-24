@@ -9,7 +9,8 @@ NAME = minishell
 
 LEXER_DIR = lexer
 LEXER_FILES = main.c destroy.c get_char_type.c \
-tokens/init.c tokens/destroy.c
+tokens/init.c tokens/destroy.c \
+states/general.c states/quote.c
 
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c exit.c

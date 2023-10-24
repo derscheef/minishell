@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:55:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 13:35:26 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/24 14:12:44 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "utils.h"
 
-int	init_token(t_token *token, int datasize)
+bool	handle_quote_state(t_lexer_program *p, char quote)
 {
-	token->data = ft_calloc(datasize + 1, sizeof(char));
-	if (!token->data)
-		return (1);
-	token->type = CHAR_NULL;
-	token->next = NULL;
-	return (0);
+	if (!p || !quote)
+		return (true);
+	return (false);
 }
