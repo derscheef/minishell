@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:10:43 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:14:14 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:13:19 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_token_type	get_char_type(char c)
 	if (c == '&')
 		return (CHAR_AMPERSAND);
 	if (c == ' ')
-		return (CHAR_WHITESPACE);
+		return (CHAR_SPACE);
 	if (c == ';')
 		return (CHAR_SEMICOLON);
 	if (c == '\\')

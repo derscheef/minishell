@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 14:05:49 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:36:40 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	init_lexer_program(char *str, size_t size, t_lexer *lexer,
 	program->token = program->lexer->tokens;
 	program->i = 0;
 	program->j = 0;
-	program->ntemp = 0;
+	program->lexer->ntoks = 0;
 	program->state = STATE_GENERAL;
 	program->str = str;
 	program->str_size = size;
@@ -38,17 +38,17 @@ static bool	init_lexer_program(char *str, size_t size, t_lexer *lexer,
 static int	initial_checks(char *str, size_t size, t_lexer *lexer)
 {
 	if (!lexer)
-		return (-1);
+		return (1);
 	if (!str || !size)
-		return (lexer->ntoks = 0, 0);
-	return (1);
+		return (lexer->ntoks = 0, 1);
+	return (0);
 }
 
 static bool	tokenize_input(t_lexer_program *p)
 {
 	bool	error;
 
-	while (p->i < p->str_size)
+	while (p->c)
 	{
 		p->c = p->str[p->i];
 		p->ch_type = get_char_type(p->c);
@@ -63,7 +63,6 @@ static bool	tokenize_input(t_lexer_program *p)
 		if (p->ch_type == CHAR_NULL && p->j > 0)
 		{
 			p->token->data[p->j] = '\0';
-			p->ntemp++;
 			p->j = 0;
 		}
 		p->i++;
@@ -71,15 +70,49 @@ static bool	tokenize_input(t_lexer_program *p)
 	return (false);
 }
 
-int	lexer(char *str, size_t size, t_lexer *lexer)
+static char	*remove_quotes(char *str)
 {
-	t_lexer_program	program;
+	char	*new_str;
+	int		i;
+	int		j;
 
-	if (initial_checks(str, size, lexer) < 0)
-		return (initial_checks(str, size, lexer));
-	if (init_lexer_program(str, size, lexer, &program))
+	new_str = malloc(strlen(str) + 1);
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != '\'' && str[i] != '\"')
+			new_str[j++] = str[i];
+		i++;
+	}
+	new_str[j] = '\0';
+	return (new_str);
+}
+
+bool	lexer(char *str, size_t size, t_lexer *lexer)
+{
+	t_lexer_program	p;
+	char			*tmp;
+
+	if (initial_checks(str, size, lexer))
+		return (true);
+	if (init_lexer_program(str, size, lexer, &p))
 		return (1);
-	if (tokenize_input(&program))
+	if (tokenize_input(&p))
 		return (1);
-	return (0);
+	p.token = lexer->tokens;
+	while (p.token)
+	{
+		if (p.token->type == TOKEN)
+		{
+			tmp = remove_quotes(p.token->data);
+			free(p.token->data);
+			p.token->data = tmp;
+			lexer->ntoks++;
+		}
+		p.token = p.token->next;
+	}
+	return (false);
 }

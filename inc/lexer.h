@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 14:03:11 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:37:11 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef enum e_token_type
 	CHAR_QOUTE = '\'',
 	CHAR_DQUOTE = '\"',
 	CHAR_SEMICOLON = ';',
-	CHAR_WHITESPACE = ' ',
+	CHAR_SPACE = ' ',
 	CHAR_ESCAPESEQUENCE = '\\',
 	CHAR_TAB = '\t',
 	CHAR_NEWLINE = '\n',
@@ -64,7 +64,6 @@ typedef struct s_lexer_program
 	t_state				state;
 	size_t				i;
 	size_t				j;
-	size_t				ntemp;
 	size_t				str_size;
 	char				*str;
 
@@ -73,12 +72,12 @@ typedef struct s_lexer_program
 }						t_lexer_program;
 
 // Return status code
-int						lexer(char *str, size_t size, t_lexer *lexer);
+bool					lexer(char *str, size_t size, t_lexer *lexer);
 
 t_token_type			get_char_type(char c);
 
 // Token functions
-int						init_token(t_token *token, int datasize);
+bool					init_token(t_token *token, int datasize);
 void					destroy_tokens(t_token *token);
 
 // State handling

@@ -6,20 +6,21 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:01:21 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/20 17:36:35 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:33:56 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokens.h"
+#include "lexer.h"
 #include "utils.h"
 
 void	print_tokens(t_token *tokens)
 {
-	printf("%s\n", tokens->value);
-	tokens++;
-	while (tokens->index)
+	t_token	*tmp;
+
+	tmp = tokens;
+	while (tmp)
 	{
-		printf("%s\n", tokens->value);
-		tokens++;
+		printf("Token: %s\n", tmp->data);
+		tmp = tmp->next;
 	}
 }
