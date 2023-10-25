@@ -18,7 +18,8 @@
 		"curses.h": "c",
 		"term.h": "c",
 		"stdbool.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"stddef.h": "c"
 	}
 }
 }
