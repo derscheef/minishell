@@ -20,8 +20,7 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 UTILS_DIR = utils
-UTILS_FILES = ft_putchar.c ft_putstr.c split.c string/skip_to_char.c string/rev_find_in_str.c \
-string/skip_set.c string/skip_to_set.c \
+UTILS_FILES = ft_putchar.c ft_putstr.c split.c \
 debug/print_tokens.c \
 
 EXECUTER_DIR = executer
