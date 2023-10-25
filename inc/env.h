@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 14:22:44 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/25 14:14:59 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 14:21:21 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ENV_H
+# define ENV_H
 
-int	main(int argc, char **argv, char **env)
+typedef struct s_env_node
 {
-	t_env_node	*env_list;
+	char				*key;
+	char				*value;
+	struct s_env_node	*next;
+}						t_env_node;
 
-	env_list = init_env_list(env);
-	print_env_list(env_list);
-	handle_signals();
-	routine();
-	printf("argc: %d\n", argc);
-	printf("argv: %s\n", argv[0]);
-	return (0);
-}
+t_env_node				*init_env_list(char **env);
+void					print_env_list(t_env_node *env_list);
+
+#endif

@@ -26,6 +26,9 @@ EXECUTER_FILES = main.c
 BUILTINS_DIR = builtins
 BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c
 
+ENV_DIR = env
+ENV_FILES = init.c print.c
+
 SRC_DIR = src
 SRC_FILES = main.c \
 $(addprefix $(LEXER_DIR)/,$(LEXER_FILES)) \
@@ -34,6 +37,7 @@ $(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
 $(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \
 $(addprefix $(EXECUTER_DIR)/,$(EXECUTER_FILES)) \
 $(addprefix $(BUILTINS_DIR)/,$(BUILTINS_FILES)) \
+$(addprefix $(ENV_DIR)/,$(ENV_FILES))
 
 OBJ_DIR = obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC_FILES:.c=.o))

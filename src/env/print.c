@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 14:22:44 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/25 14:20:10 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 14:23:39 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	print_env_list(t_env_node *env_list)
 {
-	t_env_node	*env_list;
+	t_env_node	*temp;
 
-	env_list = init_env_list(env);
-	print_env_list(env_list);
-	handle_signals();
-	routine();
-	printf("argc: %d\n", argc);
-	printf("argv: %s\n", argv[0]);
-	return (0);
+	temp = env_list;
+	while (temp != NULL)
+	{
+		printf("%s=%s\n", temp->key, temp->value);
+		temp = temp->next;
+	}
 }
