@@ -9,7 +9,9 @@ INCLUDES = -L /opt/homebrew/opt/readline/lib -lft -lreadline -lncurses
 NAME = minishell
 
 LEXER_DIR = lexer
-LEXER_FILES = main.c
+LEXER_FILES = main.c destroy.c get_char_type.c \
+tokens/init.c tokens/destroy.c \
+states/general.c states/quote.c
 
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c
@@ -18,7 +20,9 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 UTILS_DIR = utils
-UTILS_FILES = ft_putchar.c ft_putstr.c split.c
+UTILS_FILES = ft_putchar.c ft_putstr.c split.c string/skip_to_char.c string/rev_find_in_str.c \
+string/skip_set.c string/skip_to_set.c \
+debug/print_tokens.c \
 
 EXECUTER_DIR = executer
 EXECUTER_FILES = main.c

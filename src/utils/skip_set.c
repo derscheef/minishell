@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   skip_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 16:11:24 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/23 18:54:49 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/23 18:54:50 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "utils.h"
 
-# include "builtins.h"
-# include "env.h"
-# include "executer.h"
-# include "lexer.h"
-# include "routine.h"
-# include "signals.h"
-# include "utils.h"
-# include <stddef.h>
-
-typedef struct s_main
+char	*skip_set(char *str, char *set)
 {
-	t_lexer	*lexer;
-
-	char	*input;
-}			t_main;
-
-#endif
+	while (*str && ft_strchr(set, *str))
+		str++;
+	return (str);
+}

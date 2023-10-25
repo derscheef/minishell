@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 16:11:24 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/24 11:57:19 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/24 12:43:59 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "lexer.h"
 
-# include "builtins.h"
-# include "env.h"
-# include "executer.h"
-# include "lexer.h"
-# include "routine.h"
-# include "signals.h"
-# include "utils.h"
-# include <stddef.h>
-
-typedef struct s_main
+void	destroy_tokens(t_token *token)
 {
-	t_lexer	*lexer;
-
-	char	*input;
-}			t_main;
-
-#endif
+	if (!token)
+		return ;
+	destroy_tokens(token->next);
+	free(token->data);
+	free(token);
+}

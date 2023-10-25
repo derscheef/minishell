@@ -3,33 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 16:28:44 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/25 16:13:14 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 #include "minishell.h"
+#include "routine.h"
+#include "utils.h"
 
 // 1. Read input from readline
 // 2. Parse input
 // 3. Execute command
 // 4. Print output
 
+static void	reset_routine(t_main main)
+{
+	destroy_tokens(main.lexer->tokens);
+}
+
 void	routine(void)
 {
-	char	*input;
-	char	**tokens;
+	t_main	main;
 
 	while (true)
 	{
-		input = readline("minishell> ");
-		if (!input)
+		main.input = readline("minishell> ");
+		if (!main.input)
 			exit_routine();
-		add_history(input);
-		exec(input);
-		tokens = lexer(input);
-		free(tokens);
+		add_history(main.input);
+		lexer(main.input, ft_strlen(main.input), main.lexer);
+		if (!main.lexer->tokens)
+			exit_routine();
+		exec(main.input);
+		reset_routine(main);
 	}
 }
