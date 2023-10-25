@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 17:08:22 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:42:37 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ void	configure_terminal(void)
 {
 	struct termios	term;
 
-	// Get the current terminal settings
 	tcgetattr(STDIN_FILENO, &term);
-	// Modify the settings
 	term.c_lflag &= ~(ECHOCTL);
-	// Set the new terminal settings
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-// ctrl-C
 void	handle_sigint(int sig)
 {
 	(void)sig;
@@ -37,13 +33,14 @@ void	handle_sigint(int sig)
 
 void	handle_eof(void)
 {
-	// Exit the shell
 	exit(0);
 }
 
 void	handle_signals(void)
 {
-	struct sigaction sa_int, sa_quit;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
+
 	configure_terminal();
 	sa_int.sa_handler = handle_sigint;
 	sigemptyset(&sa_int.sa_mask);

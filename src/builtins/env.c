@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:38:05 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/24 21:38:11 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:46:16 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 void	print_env(void)
 {
-	// Retrieve the entire environment
-	extern char **environ;
+	extern char	**environ;
+	int			i;
 
-	for (int i = 0; environ[i] != NULL; i++)
+	i = 0;
+	while (environ[i] != NULL)
 	{
 		printf("%s\n", environ[i]);
+		i++;
 	}
 }
