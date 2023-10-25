@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 19:38:26 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 21:38:05 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 12:46:16 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#include <stdio.h>
+#include <stdlib.h>
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
+void	print_env(void)
+{
+	extern char	**environ;
+	int			i;
 
-void	routine(void);
-void	exit_routine(void);
-
-#endif
+	i = 0;
+	while (environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
+}

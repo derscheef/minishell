@@ -6,30 +6,48 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 23:23:35 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:42:37 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
-// ctrl-C
-void	sigint_handler(int signum)
+void	configure_terminal(void)
 {
-	(void)signum;
-	write(1, "\nminishell> ", 13);
-	rl_on_new_line();
-	rl_redisplay();
+	struct termios	term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-// ctrl-backslash
-void	sigquit_handler(int signum)
+void	handle_sigint(int sig)
 {
-	(void)signum;
-	exit(1);
+	(void)sig;
+	write(STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	configure_terminal();
+}
+
+void	handle_eof(void)
+{
+	exit(0);
 }
 
 void	handle_signals(void)
 {
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
+
+	configure_terminal();
+	sa_int.sa_handler = handle_sigint;
+	sigemptyset(&sa_int.sa_mask);
+	sa_int.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa_int, NULL);
+	sa_quit.sa_handler = SIG_IGN;
+	sigemptyset(&sa_quit.sa_mask);
+	sa_quit.sa_flags = SA_RESTART;
+	sigaction(SIGQUIT, &sa_quit, NULL);
 }

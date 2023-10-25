@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 19:38:26 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 17:03:46 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/24 17:04:23 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#include "minishell.h"
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-void	routine(void);
-void	exit_routine(void);
-
-#endif
+// TODO: Change to rl_clear_history from clear_history
+void	exit_routine(void)
+{
+	clear_history();
+	exit(1);
+}

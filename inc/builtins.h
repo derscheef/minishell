@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/23 19:38:26 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 12:31:59 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-# include <readline/history.h>
-# include <readline/readline.h>
+# include "minishell.h"
+# include <curses.h>
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include <term.h>
 
-void	routine(void);
-void	exit_routine(void);
+void	clear_term(void);
+void	print_env(void);
+void	print_pwd(void);
+void	execute_echo(char *input);
 
 #endif
