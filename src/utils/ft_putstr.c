@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 16:26:16 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 17:06:12 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/24 17:06:32 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	ft_putstr(char *str)
 {
-	handle_signals();
-	routine();
-	return (0);
+	while (*str)
+		write(1, str++, 1);
 }

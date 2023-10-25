@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 16:26:16 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 12:31:59 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-int	main(void)
-{
-	handle_signals();
-	routine();
-	return (0);
-}
+# include "minishell.h"
+# include <curses.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <term.h>
+
+void	clear_term(void);
+void	print_env(void);
+void	print_pwd(void);
+void	execute_echo(char *input);
+
+#endif

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 16:26:16 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/25 12:38:29 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 12:38:57 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	ft_putchar(char c)
 {
-	handle_signals();
-	routine();
-	return (0);
+	write(1, &c, 1);
 }

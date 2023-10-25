@@ -6,17 +6,11 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 15:38:37 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/24 17:08:22 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
-}
 
 void	configure_terminal(void)
 {
@@ -41,13 +35,6 @@ void	handle_sigint(int sig)
 	configure_terminal();
 }
 
-// ctrl-backslash
-void	handle_sigquit(int sig)
-{
-	(void)sig;
-	exit(1);
-}
-
 void	handle_eof(void)
 {
 	// Exit the shell
@@ -62,7 +49,7 @@ void	handle_signals(void)
 	sigemptyset(&sa_int.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa_int, NULL);
-	sa_quit.sa_handler = handle_sigquit;
+	sa_quit.sa_handler = SIG_IGN;
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;
 	sigaction(SIGQUIT, &sa_quit, NULL);

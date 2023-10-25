@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 16:26:16 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/24 21:38:05 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/24 21:38:11 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int	main(void)
+void	print_env(void)
 {
-	handle_signals();
-	routine();
-	return (0);
+	// Retrieve the entire environment
+	extern char **environ;
+
+	for (int i = 0; environ[i] != NULL; i++)
+	{
+		printf("%s\n", environ[i]);
+	}
 }

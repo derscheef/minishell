@@ -6,12 +6,11 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 15:45:02 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:28:44 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "routine.h"
+#include "minishell.h"
 
 // 1. Read input from readline
 // 2. Parse input
@@ -29,7 +28,7 @@ void	routine(void)
 		if (!input)
 			exit_routine();
 		add_history(input);
-		// executer(input);
+		exec(input);
 		tokens = lexer(input);
 		free(tokens);
 	}
