@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/19 23:13:41 by yscheef          ###   ########.fr       */
+/*   Created: 2022/10/05 15:56:28 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/15 02:05:12 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "routine.h"
-#include "signals.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	handle_signals();
-	routine();
+	while (n--)
+	{
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((unsigned char *)(s));
+		s++;
+	}
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	printf("%s", (char *)ft_memchr("bonjour", 'b', 4));
+// }

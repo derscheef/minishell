@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/20 14:01:21 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/24 18:33:56 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "lexer.h"
+#include "utils.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+void	print_tokens(t_token *tokens)
 {
-	t_lexer	*lexer;
+	t_token	*tmp;
 
-	char	*input;
-}			t_main;
-
-#endif
+	tmp = tokens;
+	while (tmp)
+	{
+		printf("Token: %s\n", tmp->data);
+		tmp = tmp->next;
+	}
+}

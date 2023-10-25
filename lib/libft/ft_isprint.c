@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/04 16:21:13 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/05 20:37:00 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+int	ft_isprint(int c)
 {
-	t_lexer	*lexer;
+	if ((c >= 0040 && c <= 0077) || (c >= 0100 && c <= 0176))
+		return (1);
+	else
+		return (0);
+}
 
-	char	*input;
-}			t_main;
-
-#endif
+// int	main(void)
+// {
+// 	printf("%i", ft_isprint('\n'));
+// 	return (0);
+// }

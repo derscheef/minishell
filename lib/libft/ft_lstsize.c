@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/14 06:27:52 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 07:00:51 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+int	ft_lstsize(t_list *lst)
 {
-	t_lexer	*lexer;
+	int	i;
 
-	char	*input;
-}			t_main;
-
-#endif
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = (*lst).next;
+	}
+	return (i);
+}

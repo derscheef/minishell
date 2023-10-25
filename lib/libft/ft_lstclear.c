@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/14 07:33:59 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 07:57:06 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_lexer	*lexer;
+	t_list	*plcr;
 
-	char	*input;
-}			t_main;
-
-#endif
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		plcr = (**lst).next;
+		ft_lstdelone(*lst, del);
+		*lst = plcr;
+	}
+}

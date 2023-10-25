@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   skip_to_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/20 13:10:57 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/20 13:16:34 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "utils.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+char	*skip_to_char(char *str, char c)
 {
-	t_lexer	*lexer;
-
-	char	*input;
-}			t_main;
-
-#endif
+	while (*str && *str != c)
+		str++;
+	return (str);
+}

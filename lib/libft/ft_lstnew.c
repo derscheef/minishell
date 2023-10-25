@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/14 06:20:46 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 06:23:39 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+t_list	*ft_lstnew(void *content)
 {
-	t_lexer	*lexer;
+	t_list	*teemo;
 
-	char	*input;
-}			t_main;
-
-#endif
+	teemo = malloc(sizeof(t_list) * 1);
+	if (!teemo)
+		return (0);
+	(*teemo).content = content;
+	(*teemo).next = NULL;
+	return (teemo);
+}

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/13 20:24:59 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 01:00:01 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_lexer	*lexer;
-
-	char	*input;
-}			t_main;
-
-#endif
+	if (s)
+	{
+		while (*s)
+			write(fd, &*s++, 1);
+		write(fd, "\n", 1);
+	}
+}

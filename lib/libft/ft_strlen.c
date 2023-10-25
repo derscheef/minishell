@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/09/13 04:45:37 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/16 18:31:46 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+size_t	ft_strlen(const char *str)
 {
-	t_lexer	*lexer;
+	size_t	i;
 
-	char	*input;
-}			t_main;
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
-#endif
+// int	main(void)
+// {
+// 	printf("%i", ft_strlen("test"));
+// 	return (0);
+// }

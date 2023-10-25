@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/24 11:55:07 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/24 18:37:06 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "lexer.h"
+#include "utils.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+bool	init_token(t_token *token, int datasize)
 {
-	t_lexer	*lexer;
-
-	char	*input;
-}			t_main;
-
-#endif
+	token->data = ft_calloc(datasize + 1, sizeof(char));
+	if (!token->data)
+		return (true);
+	token->type = CHAR_NULL;
+	token->next = NULL;
+	return (false);
+}

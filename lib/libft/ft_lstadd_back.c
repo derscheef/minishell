@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2022/10/14 06:41:00 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 07:29:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "lexer.h"
-# include <stddef.h>
-
-typedef struct s_main
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_lexer	*lexer;
+	t_list	*last;
 
-	char	*input;
-}			t_main;
-
-#endif
+	if (lst)
+	{
+		if (!*lst)
+		{
+			*lst = new;
+			return ;
+		}
+		last = ft_lstlast(*lst);
+		(*last).next = new;
+	}
+}

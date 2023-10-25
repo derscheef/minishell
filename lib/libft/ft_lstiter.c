@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 14:07:33 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/19 14:07:35 by yscheef          ###   ########.fr       */
+/*   Created: 2022/10/14 07:37:02 by ndivjak           #+#    #+#             */
+/*   Updated: 2022/10/14 07:51:27 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+#include "libft.h"
 
-# include <signal.h>
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*plcr;
 
-#endif
+	if (lst && f)
+	{
+		while (lst)
+		{
+			f((*lst).content);
+			plcr = (*lst).next;
+			lst = plcr;
+		}
+	}
+}

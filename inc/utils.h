@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:46:30 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:11 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/24 18:37:39 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef UTILS_H
+# define UTILS_H
 
+# include "../lib/libft/libft.h"
 # include "lexer.h"
 # include <stddef.h>
+# include <stdio.h>
 
-typedef struct s_main
-{
-	t_lexer	*lexer;
+// String utils
+char	**split_string(char *str, char *set);
+char	*skip_to_char(char *str, char c);
+char	*rev_find_in_str(char *str, char *start, char c);
+char	*skip_set(char *str, char *set);
+char	*skip_to_set(char *str, char *set);
 
-	char	*input;
-}			t_main;
+// Debug utils
+void	print_tokens(t_token *tokens);
 
 #endif
