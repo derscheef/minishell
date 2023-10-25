@@ -30,7 +30,7 @@ BUILTINS_DIR = builtins
 BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c
 
 ENV_DIR = env
-ENV_FILES = init.c print.c
+ENV_FILES = init.c print.c main.c
 
 SRC_DIR = src
 SRC_FILES = main.c \

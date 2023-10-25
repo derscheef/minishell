@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 17:09:47 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/25 17:04:27 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/25 17:06:37 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "builtins.h"
-# include "executer.h"
-# include "lexer.h"
-# include "routine.h"
-# include "env.h"
-# include "signals.h"
-# include "utils.h"
-# include <stddef.h>
-
-#endif
+void	env_init(t_main *main, char **env)
+{
+	main->env_list = init_env_list(env);
+	print_env_list(main->env_list);
+}
