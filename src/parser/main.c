@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 17:03:58 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/25 16:56:07 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/25 18:09:39 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#include "minishell.h"
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-typedef struct s_main
+bool	parse(t_main *main)
 {
-	t_lexer	lexer;
-	t_node	*ast;
+	t_token	*token;
+	t_node	*node;
 
-	char	*input;
-}			t_main;
-
-void		routine(t_main *main);
-void		exit_routine(void);
-
-#endif
+	token = main->lexer.tokens;
+	node = main->ast;
+	if (!token || !node || main->lexer.ntoks == 0)
+		return (true);
+	return (false);
+}
