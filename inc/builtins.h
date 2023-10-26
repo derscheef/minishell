@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 16:27:06 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:58:56 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	print_env(t_main *main);
 void	print_pwd(void);
 void	execute_echo(char *input);
 void	exec_export(char *input, t_main *main);
+void	exec_unset(char *input, t_main *main);
+void	exec_cd(char *input);
 
 #endif
