@@ -6,13 +6,13 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:23:28 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 12:31:38 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 13:57:41 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(char *input)
+void	exec(char *input, t_main *main)
 {
 	if (ft_strncmp(input, "clear", 5) == 0)
 		clear_term();
@@ -25,7 +25,7 @@ void	exec(char *input)
 	else if (ft_strncmp(input, "cd", 2) == 0)
 		ft_putstr("cd\n");
 	else if (ft_strncmp(input, "export", 6) == 0)
-		ft_putstr("export\n");
+		exec_export(input, main);
 	else if (ft_strncmp(input, "unset", 5) == 0)
 		ft_putstr("unset\n");
 	else if (ft_strncmp(input, "env", 3) == 0)

@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 16:45:59 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/25 23:19:31 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	routine(t_main *main)
 		lexer(main->input, ft_strlen(main->input), &main->lexer);
 		if (!main->lexer.tokens)
 			exit_routine();
-		exec(main->input);
+		exec(main->input, main);
 		reset_routine(main);
 	}
 }
