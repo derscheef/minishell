@@ -14,7 +14,10 @@ tokens/init.c tokens/destroy.c \
 states/general.c states/quote.c
 
 PARSER_DIR = parser
-PARSER_FILES = main.c
+PARSER_FILES = main.c \
+job/main.c job/job1.c \
+cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/simple_cmd.c \
+tokenlist/main.c
 
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c
@@ -25,6 +28,7 @@ SIGNALS_FILES = main.c
 UTILS_DIR = utils
 UTILS_FILES = ft_putchar.c ft_putstr.c split.c \
 debug/print_tokens.c \
+nodes/new.c nodes/destroy.c nodes/attach.c
 
 EXECUTER_DIR = executer
 EXECUTER_FILES = main.c

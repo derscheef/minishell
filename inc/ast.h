@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:24 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 11:57:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	main(int argc, char **argv, char **env)
+typedef enum e_node_type
 {
-	t_env_node	*env_list;
-	t_main		main;
+	NODE_PIPE = (1 << 0),
+	NODE_BCKGRND = (1 << 1),
+	NODE_SEQ = (1 << 2),
+	NODE_REDIRECT_IN = (1 << 3),
+	NODE_REDIRECT_OUT = (1 << 4),
+	NODE_CMDPATH = (1 << 5),
+	NODE_ARGUMENT = (1 << 6),
+	NODE_DATA = (1 << 7),
+}					t_node_type;
 
-	env_list = init_env_list(env);
-	print_env_list(env_list);
-	handle_signals();
-	routine(&main);
-	printf("argc: %d\n", argc);
-	printf("argv: %s\n", argv[0]);
-	return (0);
-}
+typedef struct s_node
+{
+	t_node_type		type;
+	char			*data;
+	struct s_node	*left;
+	struct s_node	*right;
+}					t_node;

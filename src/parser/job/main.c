@@ -5,23 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:24 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 12:41:00 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 14:28:54 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+t_node	*parse_job(t_parse_program *p)
 {
-	t_env_node	*env_list;
-	t_main		main;
+	t_token	*save;
+	t_node	*node;
 
-	env_list = init_env_list(env);
-	print_env_list(env_list);
-	handle_signals();
-	routine(&main);
-	printf("argc: %d\n", argc);
-	printf("argv: %s\n", argv[0]);
-	return (0);
+	save = p->cur_token;
+	node = parse_job1(p);
+	if (node)
+		return (node);
+	p->cur_token = save;
+	node = parse_cmd(p);
+	if (node)
+		return (node);
+	return (NULL);
 }
