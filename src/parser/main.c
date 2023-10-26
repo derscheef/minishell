@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:56:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 12:40:50 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:05:35 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ bool	consume_token(t_token_type type, char **strbuffer, t_parse_program *p)
 		return (true);
 	if (p->cur_token->type != type)
 	{
-		p->cur_token = p->cur_token->next;
 		return (true);
 	}
 	if (strbuffer)
@@ -43,6 +42,6 @@ bool	parse(t_main *main)
 		return (true);
 	if (!p.cur_token || !p.ast || main->lexer.ntoks == 0)
 		return (true);
-	parse_job(&p);
+	main->ast = parse_job(&p);
 	return (false);
 }

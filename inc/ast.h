@@ -6,20 +6,20 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 11:57:24 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/26 15:57:49 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef enum e_node_type
 {
-	NODE_PIPE = (1 << 0),
-	NODE_BCKGRND = (1 << 1),
-	NODE_SEQ = (1 << 2),
-	NODE_REDIRECT_IN = (1 << 3),
-	NODE_REDIRECT_OUT = (1 << 4),
-	NODE_CMDPATH = (1 << 5),
-	NODE_ARGUMENT = (1 << 6),
-	NODE_DATA = (1 << 7),
+	NODE_PIPE,
+	NODE_BCKGRND,
+	NODE_SEQ,
+	NODE_REDIRECT_IN,
+	NODE_REDIRECT_OUT,
+	NODE_CMDPATH,
+	NODE_ARGUMENT,
+	NODE_DATA,
 }					t_node_type;
 
 typedef struct s_node
