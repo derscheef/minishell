@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 11:57:24 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 16:37:38 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/26 16:38:47 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef AST_H
+# define AST_H
 
 typedef enum e_node_type
 {
@@ -29,3 +32,5 @@ typedef struct s_node
 	struct s_node	*left;
 	struct s_node	*right;
 }					t_node;
+
+#endif
