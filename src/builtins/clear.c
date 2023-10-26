@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:19:06 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 12:45:22 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 15:56:34 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	clear_term(void)
 		exit(1);
 	}
 	tputs(clearstr, 0, putchar);
-	perror("Could not get the clear string");
 }

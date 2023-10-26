@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:23:28 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 13:57:41 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:27:56 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exec(char *input, t_main *main)
 	else if (ft_strncmp(input, "unset", 5) == 0)
 		ft_putstr("unset\n");
 	else if (ft_strncmp(input, "env", 3) == 0)
-		print_env();
+		print_env(main);
 	else if (ft_strncmp(input, "", 1) == 0)
 		;
 	else

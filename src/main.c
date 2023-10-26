@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:40:19 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 15:12:16 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@ int	main(int argc, char **argv, char **env)
 	env_init(&main, env);
 	handle_signals();
 	routine(&main);
-	printf("argc: %d", argc);
-	printf("argv: %s", argv[0]);
 	return (0);
 }
