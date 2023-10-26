@@ -6,13 +6,15 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:30:36 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 14:40:12 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROUTINE_H
 # define ROUTINE_H
 
+# include "minishell.h"
+# include "parser.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>

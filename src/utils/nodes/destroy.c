@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:40:19 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/26 13:01:25 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 14:33:33 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	destroy_node(t_node *node)
 {
-	t_main	main;
-
-	env_init(&main, env);
-	handle_signals();
-	routine(&main);
-	printf("argc: %d", argc);
-	printf("argv: %s", argv[0]);
-	return (0);
+	if (!node)
+		return ;
+	if (node->type & NODE_DATA)
+		free(node->data);
+	destroy_node(node->left);
+	destroy_node(node->right);
+	free(node);
 }

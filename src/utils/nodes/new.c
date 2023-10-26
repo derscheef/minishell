@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:40:19 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/26 11:48:16 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 11:58:52 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+t_node	*new_node(char *data, t_node_type type)
 {
-	t_main	main;
+	t_node	*node;
 
-	env_init(&main, env);
-	handle_signals();
-	routine(&main);
-	printf("argc: %d", argc);
-	printf("argv: %s", argv[0]);
-	return (0);
+	node = ft_calloc(1, sizeof(t_node));
+	node->data = ft_strdup(data);
+	node->type = type;
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
 }
