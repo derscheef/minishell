@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 16:45:59 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 11:53:17 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 static void	reset_routine(t_main *main)
 {
-	destroy_tokens(main->lexer.tokens);
+	if (main->lexer.ntoks > 0)
+		destroy_tokens(main->lexer.tokens);
 }
 
 void	routine(t_main *main)
