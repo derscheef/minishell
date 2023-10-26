@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 14:30:47 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/25 16:56:07 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/25 18:09:39 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "builtins.h"
-# include "env.h"
-# include "executer.h"
-# include "lexer.h"
-# include "parser.h"
-# include "routine.h"
-# include "signals.h"
-# include "utils.h"
-# include <stddef.h>
+bool	parse(t_main *main)
+{
+	t_token	*token;
+	t_node	*node;
 
-#endif
+	token = main->lexer.tokens;
+	node = main->ast;
+	if (!token || !node || main->lexer.ntoks == 0)
+		return (true);
+	return (false);
+}

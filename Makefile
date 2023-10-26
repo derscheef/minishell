@@ -13,6 +13,9 @@ LEXER_FILES = main.c destroy.c get_char_type.c \
 tokens/init.c tokens/destroy.c \
 states/general.c states/quote.c
 
+PARSER_DIR = parser
+PARSER_FILES = main.c
+
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c
 
@@ -35,6 +38,7 @@ ENV_FILES = init.c print.c main.c
 SRC_DIR = src
 SRC_FILES = main.c \
 $(addprefix $(LEXER_DIR)/,$(LEXER_FILES)) \
+$(addprefix $(PARSER_DIR)/,$(PARSER_FILES)) \
 $(addprefix $(ROUTINE_DIR)/,$(ROUTINE_FILES)) \
 $(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
 $(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \

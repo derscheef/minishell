@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 17:10:44 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 14:30:36 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_env_node
 typedef struct s_main
 {
 	t_lexer				lexer;
-	t_env_node			*env_list;
+	t_node				*ast;
 
 	char				*input;
 }						t_main;
