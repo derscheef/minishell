@@ -6,12 +6,14 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:14:59 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 17:10:36 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/26 14:55:48 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
+
+# include "main.h"
 
 t_env_node	*init_env_list(char **env);
 t_env_node	*new_env_node(char *str);

@@ -34,7 +34,7 @@ EXECUTER_DIR = executer
 EXECUTER_FILES = main.c
 
 BUILTINS_DIR = builtins
-BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c
+BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c
 
 ENV_DIR = env
 ENV_FILES = init.c print.c main.c
