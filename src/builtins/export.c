@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 16:37:20 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/27 11:04:08 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,24 @@ static void	modify_or_add_env(t_main *main, char *key, char *value)
 	env_listadd_back(&(main->env_list), new_node);
 }
 
-void	exec_export(char *input, t_main *main)
+int	exec_export(char *input, t_main *main)
 {
 	char	*eq_pos;
 	char	*key;
 	char	*value;
 
 	if (!input || !main)
-		return ;
+		return (1);
 	input += 6;
 	eq_pos = ft_strchr(input, '=');
 	if (!eq_pos)
-	{
-		ft_putendl_fd("Error: export format should be KEY=VALUE", 2);
-		return ;
-	}
+		return (ft_putendl_fd("Error: export format should be KEY=VALUE", 2),
+			2);
 	*eq_pos = '\0';
 	key = ft_strtrim(input, " \t\n");
 	value = ft_strtrim(eq_pos + 1, " \t\n");
 	modify_or_add_env(main, key, value);
 	free(key);
 	free(value);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 16:58:56 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/27 11:02:32 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include <stdlib.h>
 # include <term.h>
 
-void	clear_term(void);
-void	print_env(t_main *main);
-void	print_pwd(void);
-void	execute_echo(char *input);
-void	exec_export(char *input, t_main *main);
-void	exec_unset(char *input, t_main *main);
-void	exec_cd(char *input);
+int	clear_term(void);
+int	print_env(t_main *main);
+int	print_pwd(void);
+int	execute_echo(char *input);
+int	exec_export(char *input, t_main *main);
+int	exec_unset(char *input, t_main *main);
+int	exec_cd(char *input);
 
 #endif

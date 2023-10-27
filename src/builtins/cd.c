@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 17:15:00 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/27 10:59:48 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*construct_full_path(const char *current, const char *relative)
 	return (full_path);
 }
 
-void	exec_cd(char *input)
+int	exec_cd(char *input)
 {
 	char	cwd[4096];
 	char	*full_path;
@@ -42,7 +42,8 @@ void	exec_cd(char *input)
 		}
 	}
 	if (chdir(input) != 0)
-		perror("cd error");
+		return (perror("cd error"), 1);
 	if (full_path)
 		free(full_path);
+	return (0);
 }

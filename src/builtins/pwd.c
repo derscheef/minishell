@@ -6,13 +6,13 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:42:43 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 12:45:43 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/27 11:01:55 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_pwd(void)
+int	print_pwd(void)
 {
 	char	*buffer;
 	size_t	size;
@@ -28,5 +28,7 @@ void	print_pwd(void)
 	else
 	{
 		perror("pwd");
+		return (1);
 	}
+	return (0);
 }
