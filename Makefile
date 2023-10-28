@@ -14,7 +14,7 @@ tokens/init.c tokens/destroy.c \
 states/general.c states/quote.c
 
 PARSER_DIR = parser
-PARSER_FILES = main.c \
+PARSER_FILES = main.c destroy.c \
 job/main.c job/job1.c \
 cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/simple_cmd.c \
 tokenlist/main.c

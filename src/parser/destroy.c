@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtin.c                                     :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:45:12 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/28 19:41:29 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/28 19:45:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	execute_builtin(t_internal_cmd *p)
+void	destroy_ast(t_node *node)
 {
-	if (!p)
-		return (true);
-	return (false);
+	if (!node)
+		return ;
+	destroy_ast(node->left);
+	destroy_ast(node->right);
+	free(node->data);
+	free(node);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:56:35 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:48:20 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/28 19:42:12 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_parse_program
 }			t_parse_program;
 
 bool		parse(t_main *main);
+void		destroy_ast(t_node *node);
 bool		consume_token(t_token_type type, char **strbuffer,
 				t_parse_program *p);
 
