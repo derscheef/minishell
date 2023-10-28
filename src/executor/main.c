@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:48:25 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:37:14 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 19:39:00 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static char	**parse_env(t_env_node *env)
 {
 	char	**envp;
 	size_t	i;
+	char	*tmp;
 
 	i = get_list_size(env);
 	envp = ft_calloc(i + 1, sizeof(char *));
@@ -37,7 +38,9 @@ static char	**parse_env(t_env_node *env)
 	i = 0;
 	while (env)
 	{
-		envp[i] = ft_strjoin(ft_strjoin(env->key, "="), env->value);
+		tmp = ft_strjoin(env->key, "=");
+		envp[i] = ft_strjoin(tmp, env->value);
+		free(tmp);
 		i++;
 		env = env->next;
 	}
