@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:00:43 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:01:23 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:43:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_node	*parse_cmd2(t_parse_program *p)
 	return_node = new_node(arg, NODE_REDIRECT_OUT);
 	if (!return_node)
 		return (destroy_node(scmd_node), NULL);
-	attach_node(return_node, NULL, scmd_node);
+	attach_node(return_node, scmd_node, NULL);
 	return (return_node);
 }

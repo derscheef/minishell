@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast.h                                              :+:      :+:    :+:   */
+/*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 16:01:59 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/28 17:49:09 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AST_H
-# define AST_H
+#include "minishell.h"
 
-typedef enum e_node_type
+bool	execute_builtin(t_internal_cmd *p)
 {
-	NODE_PIPE,
-	NODE_BCKGRND,
-	NODE_SEQ,
-	NODE_REDIRECT_IN,
-	NODE_REDIRECT_OUT,
-	NODE_CMDPATH,
-	NODE_ARGUMENT,
-	NODE_DATA,
-}					t_node_type;
-
-typedef struct s_node
-{
-	t_node_type		type;
-	char			*data;
-	struct s_node	*left;
-	struct s_node	*right;
-}					t_node;
-
-#endif
+	if (!p)
+		return (true);
+	return (false);
+}

@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exec_internal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 13:23:28 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/28 17:20:10 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/28 17:14:12 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/28 17:47:21 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(char *input)
+static bool	is_builtin(char *input)
 {
 	if (!ft_strncmp(input, "clear", 5))
-		clear_term();
+		return (true);
 	else if (!ft_strncmp(input, "exit", 4))
-		exit_routine();
+		return (true);
 	else if (!ft_strncmp(input, "echo", 4))
-		execute_echo(input);
+		return (true);
 	else if (!ft_strncmp(input, "pwd", 3))
-		print_pwd();
+		return (true);
 	else if (!ft_strncmp(input, "cd", 2))
-		ft_putstr("cd\n");
+		return (true);
 	else if (!ft_strncmp(input, "export", 6))
-		ft_putstr("export\n");
+		return (true);
 	else if (!ft_strncmp(input, "unset", 5))
-		ft_putstr("unset\n");
+		return (true);
 	else if (!ft_strncmp(input, "env", 3))
-		print_env();
-	else if (!ft_strncmp(input, "", 1))
-		;
+		return (true);
 	else
-		ft_putstr("Command not found\n");
+		return (false);
+}
+
+bool	execute_internal_command(t_internal_cmd *p)
+{
+	if (is_builtin(p->av[0]))
+		execute_builtin(p);
+	else
+		execute_external(p);
+	return (false);
 }

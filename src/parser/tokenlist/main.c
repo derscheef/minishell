@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:45:54 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 14:31:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:43:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_node	*get_node(t_parse_program *p)
 	return_node = new_node(arg, NODE_ARGUMENT);
 	if (!return_node)
 		return (NULL);
-	attach_node(return_node, NULL, tokenlist_node);
+	attach_node(return_node, tokenlist_node, NULL);
 	return (return_node);
 }
 
