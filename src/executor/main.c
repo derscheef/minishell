@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:48:25 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 18:42:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 19:37:14 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ static char	**parse_env(t_env_node *env)
 	return (envp);
 }
 
+static void	free_env(char **env)
+{
+	size_t	i;
+
+	i = 0;
+	while (env[i])
+	{
+		free(env[i]);
+		i++;
+	}
+	free(env);
+}
+
 bool	execute(t_main *main)
 {
 	t_executor	program;
@@ -53,5 +66,6 @@ bool	execute(t_main *main)
 	program.env = parse_env(main->env_list);
 	program.node = main->ast;
 	execute_job(&program);
+	free_env(program.env);
 	return (false);
 }
