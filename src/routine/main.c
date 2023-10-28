@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 18:13:54 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 18:19:29 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	routine(t_main *main)
 		if (!main->lexer.tokens)
 			exit_routine();
 		parse(main);
-		execute(main->ast);
+		execute(main);
 		reset_routine(main);
 	}
 }

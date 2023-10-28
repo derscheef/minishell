@@ -6,16 +6,52 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:48:25 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 17:44:50 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 18:42:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	execute(t_node *tree)
+static size_t	get_list_size(t_env_node *env)
 {
-	if (!tree)
+	size_t	i;
+
+	i = 0;
+	while (env)
+	{
+		env = env->next;
+		i++;
+	}
+	return (i);
+}
+
+static char	**parse_env(t_env_node *env)
+{
+	char	**envp;
+	size_t	i;
+
+	i = get_list_size(env);
+	envp = ft_calloc(i + 1, sizeof(char *));
+	if (!envp)
+		return (NULL);
+	i = 0;
+	while (env)
+	{
+		envp[i] = ft_strjoin(ft_strjoin(env->key, "="), env->value);
+		i++;
+		env = env->next;
+	}
+	return (envp);
+}
+
+bool	execute(t_main *main)
+{
+	t_executor	program;
+
+	if (!main->ast)
 		return (true);
-	execute_job(tree);
+	program.env = parse_env(main->env_list);
+	program.node = main->ast;
+	execute_job(&program);
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 17:47:39 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 18:47:34 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_cmd
 {
 	t_node	*node;
+	char	**env;
 	bool	is_stdin;
 	bool	is_stdout;
 	int		fd_read;
@@ -32,6 +33,7 @@ typedef struct s_internal_cmd
 {
 	size_t	ac;
 	char	**av;
+	char	**env;
 	bool	is_stdin;
 	bool	is_stdout;
 	int		fd_read;
@@ -40,9 +42,15 @@ typedef struct s_internal_cmd
 	char	*redirect_out;
 }			t_internal_cmd;
 
-bool		execute(t_node *tree);
-void		execute_job(t_node *node);
-void		execute_pipe(t_node *n);
+typedef struct s_executor
+{
+	t_node	*node;
+	char	**env;
+}			t_executor;
+
+bool		execute(t_main *p);
+void		execute_job(t_executor *p);
+void		execute_pipe(t_executor *p);
 void		execute_command(t_cmd p);
 void		execute_simple_command(t_cmd p);
 

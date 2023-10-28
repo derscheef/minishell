@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:06:16 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 18:01:03 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 19:13:36 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	init_arguments(t_cmd *p, t_internal_cmd *cmd)
 	while (node && (node->type == NODE_ARGUMENT || node->type == NODE_CMDPATH))
 	{
 		ac++;
-		node = node->right;
+		node = node->left;
 	}
 	cmd->ac = ac;
 	cmd->av = ft_calloc(ac + 1, sizeof(char *));
@@ -37,7 +37,7 @@ static bool	init_arguments(t_cmd *p, t_internal_cmd *cmd)
 	{
 		cmd->av[ac] = ft_strdup(node->data);
 		ac++;
-		node = node->right;
+		node = node->left;
 	}
 	return (false);
 }
@@ -60,7 +60,7 @@ void	execute_simple_command(t_cmd p)
 {
 	t_internal_cmd	*cmd;
 
-	cmd = &(t_internal_cmd){0, NULL, p.is_stdin, p.is_stdout, p.fd_read,
+	cmd = &(t_internal_cmd){0, NULL, p.env, p.is_stdin, p.is_stdout, p.fd_read,
 		p.fd_write, p.redirect_in, p.redirect_out};
 	if (init_arguments(&p, cmd))
 		return ;
