@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:25:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 18:14:34 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/25 17:04:27 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/26 15:12:24 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	env_init(t_main *main, char **env)
 {
-	t_main	main;
-
-	env_init(&main, env);
-	handle_signals();
-	routine(&main);
-	return (0);
+	main->env_list = init_env_list(env);
 }

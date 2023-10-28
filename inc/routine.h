@@ -3,33 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   routine.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 11:55:28 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/27 11:03:17 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROUTINE_H
 # define ROUTINE_H
 
+# include "env.h"
+# include "lexer.h"
+# include "main.h"
 # include "minishell.h"
-# include "parser.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_main
-{
-	t_lexer	lexer;
-	t_node	*ast;
-
-	char	*input;
-}			t_main;
-
-void		routine(t_main *main);
-void		exit_routine(void);
+void	routine(t_main *main);
+int		exit_routine(void);
 
 #endif

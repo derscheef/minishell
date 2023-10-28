@@ -6,12 +6,15 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 16:01:59 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 18:13:34 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AST_H
 # define AST_H
+
+# ifndef AST_H
+#  define AST_H
 
 typedef enum e_node_type
 {
@@ -33,4 +36,4 @@ typedef struct s_node
 	struct s_node	*right;
 }					t_node;
 
-#endif
+# endif

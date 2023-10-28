@@ -3,7 +3,7 @@ YELLOW=\033[1;33m
 NC=\033[0m
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 INCLUDES = -L /opt/homebrew/opt/readline/lib -lft -lreadline -lncurses
 
 NAME = minishell
@@ -38,10 +38,10 @@ EXECUTOR_FILES = main.c cmd.c job.c pipe.c \
 cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
 
 BUILTINS_DIR = builtins
-BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c
+BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c unset.c cd.c
 
 ENV_DIR = env
-ENV_FILES = init.c print.c
+ENV_FILES = init.c print.c main.c
 
 SRC_DIR = src
 SRC_FILES = main.c \

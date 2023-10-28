@@ -6,14 +6,13 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/26 16:52:37 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/28 18:14:42 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "ast.h"
 # include "builtins.h"
 # include "env.h"
 # include "executer.h"
