@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:01:08 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 21:36:29 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:33:51 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ static char	*get_input(char *delim)
 
 bool	execute_heredoc(t_cmd *p)
 {
-	p->fd_write = dup(STDIN_FILENO);
-	if (p->fd_write == -1)
-		return (perror("Error: couldn't dup STDIN in heredoc\n"), true);
-	char *input = get_input(p->node->data);
-	free(p->node->data);
-	p->node->data = "/dev/stdin";
-	ft_putstr_fd(input, p->fd_write);
-	close(p->fd_write);
+	int		fd[2];
+	char	*input;
+
+	if (pipe(fd) == -1)
+		return (perror("Error: couldn't create pipe in heredoc"), true);
+	input = get_input(p->node->data);
+	write(fd[1], input, ft_strlen(input));
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	free(input);
 	return (false);
 }
