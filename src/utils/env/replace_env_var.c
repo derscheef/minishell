@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:18:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:42:12 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:57:33 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,42 @@ static bool	is_env_var(char *str, t_env_node *env_list)
 
 static void	init_env_var(char *str, char *start_var, t_env_var *env_var)
 {
+	char	*end_of_var;
+
+	end_of_var = skip_to_set(start_var, " \"\'\t\n");
+	env_var->start = ft_substr(str, 0, start_var - str);
+	env_var->end = ft_substr(str, end_of_var - str, ft_strlen(str));
+	env_var->var = ft_substr(start_var, 0, end_of_var - start_var);
 }
 
-char	*replace_env_var(char *str, char *env, t_env_node *env_list)
+static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list)
 {
-	char	*env_var;
-	char	*end_of_var;
-	char	*start;
-	char	*end;
-	char	*var;
 	char	*tmp;
 
-	env_var = str;
-	while ((env_var = skip_to_set(env_var, "$\'")))
+	tmp = get_env_var(env->var + 1, env_list);
+	if (tmp)
+	{
+		free(env->var);
+		env->var = ft_strdup(tmp);
+	}
+	free(str);
+	str = ft_strjoin(env->start, env->var);
+	free(env->start);
+	free(env->var);
+	str = ft_strjoin(str, env->end);
+	free(env->end);
+	return (str);
+}
+
+char	*replace_env_var(char *str, t_env_node *env_list)
+{
+	char		*env_var;
+	char		*tmp;
+	t_env_var	env;
+
+	env_var = skip_to_set(str, "$\'");
+	while (env_var)
+	{
 		if (!*env_var)
 			return (str);
 		else if (*env_var == '\'')
@@ -57,21 +80,9 @@ char	*replace_env_var(char *str, char *env, t_env_node *env_list)
 				break ;
 			env_var++;
 		}
-	end_of_var = skip_to_set(env_var, " \"\'\t\n");
-	start = ft_substr(str, 0, env_var - str);
-	end = ft_substr(str, end_of_var - str, ft_strlen(str));
-	var = ft_substr(env_var, 0, end_of_var - env_var);
-	tmp = get_env_var(var + 1, env_list);
-	if (tmp)
-	{
-		free(var);
-		var = ft_strdup(tmp);
+		env_var = skip_to_set(env_var, "$\'");
 	}
-	free(str);
-	str = ft_strjoin(start, var);
-	free(start);
-	free(var);
-	str = ft_strjoin(str, end);
-	free(end);
+	init_env_var(str, env_var, &env);
+	str = rebuild_string(str, &env, env_list);
 	return (replace_env_var(str, env_list));
 }
