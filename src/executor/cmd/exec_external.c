@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 11:38:57 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 16:00:28 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char	*get_bin_path(t_env_node *env, char *command)
 	int		i;
 
 	i = -1;
+	path_var = NULL;
 	while (env)
 	{
 		if (ft_strncmp(env->key, "PATH", 5) == 0)
