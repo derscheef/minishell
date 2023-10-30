@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 10:43:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:35:33 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTOR_H
 
 # include "ast.h"
+# include "main.h"
 # include <dirent.h>
 # include <fcntl.h>
 # include <stdbool.h>
@@ -29,6 +30,7 @@ typedef struct s_cmd
 	int			fd_write;
 	char		*redirect_in;
 	char		*redirect_out;
+	int			*exit_code;
 }				t_cmd;
 
 typedef struct s_internal_cmd
@@ -43,6 +45,7 @@ typedef struct s_internal_cmd
 	int			fd_write;
 	char		*redirect_in;
 	char		*redirect_out;
+	int			*exit_code;
 }				t_internal_cmd;
 
 typedef struct s_executor
@@ -50,6 +53,7 @@ typedef struct s_executor
 	t_node		*node;
 	char		**env;
 	t_env_node	*env_node;
+	int			*exit_code;
 }				t_executor;
 
 bool			execute(t_main *p);
@@ -61,6 +65,6 @@ void			execute_simple_command(t_cmd p);
 // Actual execution
 bool			execute_internal_command(t_internal_cmd *p);
 bool			execute_external(t_internal_cmd *p);
-bool			execute_builtin(t_internal_cmd *p);
+void			execute_builtin(t_internal_cmd *p);
 
 #endif

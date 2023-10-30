@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:52:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 13:10:19 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:55:14 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MAIN_H
 
 # include "ast.h"
-# include "env.h"
+# include "env_list.h"
 # include "lexer.h"
 
 typedef struct s_main

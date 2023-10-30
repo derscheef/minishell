@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 11:04:08 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:22:08 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	env_listadd_back(t_env_node **lst, t_env_node *new)
 	last->next = new;
 }
 
-static void	modify_or_add_env(t_main *main, char *key, char *value)
+static void	modify_or_add_env(t_internal_cmd *main, char *key, char *value)
 {
 	t_env_node	*current;
 	t_env_node	*new_node;
 
-	current = main->env_list;
+	current = main->env_node;
 	while (current)
 	{
 		if (current->key && key && ft_strlen(current->key) == ft_strlen(key)
@@ -54,10 +54,10 @@ static void	modify_or_add_env(t_main *main, char *key, char *value)
 	}
 	new_node->key = ft_strdup(key);
 	new_node->value = ft_strdup(value);
-	env_listadd_back(&(main->env_list), new_node);
+	env_listadd_back(&(main->env_node), new_node);
 }
 
-int	exec_export(char *input, t_main *main)
+int	exec_export(char *input, t_internal_cmd *main)
 {
 	char	*eq_pos;
 	char	*key;

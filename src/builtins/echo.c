@@ -6,13 +6,13 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:48:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 11:00:10 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:30:16 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execute_echo(char *input)
+int	execute_echo(char *input, int fd)
 {
 	int	i;
 	int	print_newline;
@@ -32,10 +32,10 @@ int	execute_echo(char *input)
 	{
 		i++;
 	}
-	ft_putstr(input + i);
+	ft_putstr_fd(input + i, fd);
 	if (print_newline)
 	{
-		ft_putchar('\n');
+		ft_putchar_fd('\n', fd);
 	}
 	return (0);
 }

@@ -32,9 +32,6 @@ nodes/new.c nodes/destroy.c nodes/attach.c \
 env/replace_env_var.c env/get_env_var.c \
 
 
-EXECUTER_DIR = executer
-EXECUTER_FILES = main.c
-
 EXECUTOR_DIR = executor
 EXECUTOR_FILES = main.c cmd.c job.c pipe.c \
 cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
@@ -52,7 +49,6 @@ $(addprefix $(PARSER_DIR)/,$(PARSER_FILES)) \
 $(addprefix $(ROUTINE_DIR)/,$(ROUTINE_FILES)) \
 $(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
 $(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \
-$(addprefix $(EXECUTER_DIR)/,$(EXECUTER_FILES)) \
 $(addprefix $(EXECUTOR_DIR)/,$(EXECUTOR_FILES)) \
 $(addprefix $(BUILTINS_DIR)/,$(BUILTINS_FILES)) \
 $(addprefix $(ENV_DIR)/,$(ENV_FILES))
