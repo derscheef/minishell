@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:19:11 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 17:14:25 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,28 @@ static char	*remove_quotes(char *str)
 	return (new_str);
 }
 
-bool	lexer(char *str, size_t size, t_lexer *lexer, t_env_node *env_list)
+bool	lexer(char *str, size_t size, t_main *main)
 {
 	t_lexer_program	p;
 	char			*tmp;
 
-	if (initial_checks(str, size, lexer))
+	if (initial_checks(str, size, &main->lexer))
 		return (true);
-	if (init_lexer_program(str, size, lexer, &p))
+	if (init_lexer_program(str, size, &main->lexer, &p))
 		return (1);
 	if (tokenize_input(&p))
 		return (1);
-	p.token = lexer->tokens;
+	p.token = main->lexer.tokens;
 	while (p.token)
 	{
 		if (p.token->type == TOKEN)
 		{
-			p.token->data = replace_env_var(p.token->data, env_list);
+			p.token->data = replace_env_var(p.token->data, main->env_list,
+					main->exit_code);
 			tmp = remove_quotes(p.token->data);
 			free(p.token->data);
 			p.token->data = tmp;
-			lexer->ntoks++;
+			main->lexer.ntoks++;
 		}
 		p.token = p.token->next;
 	}

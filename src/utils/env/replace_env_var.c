@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:18:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:59:44 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 17:04:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static bool	is_env_var(char *str, t_env_node *env_list)
 	var = ft_substr(str, 0, end_of_var - str);
 	if (get_env_var(var, env_list))
 		return (free(var), true);
+	else if (ft_strcmp(var, "?") == 0)
+		return (free(var), true);
 	return (false);
 }
 
@@ -42,10 +44,16 @@ static void	init_env_var(char *str, char *start_var, t_env_var *env_var)
 	env_var->var = ft_substr(start_var, 0, end_of_var - start_var);
 }
 
-static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list)
+static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list,
+		int exit_code)
 {
 	char	*tmp;
 
+	if (ft_strcmp(env->var + 1, "?") == 0)
+	{
+		free(env->var);
+		env->var = ft_itoa(exit_code);
+	}
 	tmp = get_env_var(env->var + 1, env_list);
 	if (tmp)
 	{
@@ -61,7 +69,7 @@ static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list)
 	return (str);
 }
 
-char	*replace_env_var(char *str, t_env_node *env_list)
+char	*replace_env_var(char *str, t_env_node *env_list, int exit_code)
 {
 	char		*env_var;
 	t_env_var	env;
@@ -82,6 +90,6 @@ char	*replace_env_var(char *str, t_env_node *env_list)
 		env_var = skip_to_set(env_var, "$\'");
 	}
 	init_env_var(str, env_var, &env);
-	str = rebuild_string(str, &env, env_list);
-	return (replace_env_var(str, env_list));
+	str = rebuild_string(str, &env, env_list, exit_code);
+	return (replace_env_var(str, env_list, exit_code));
 }

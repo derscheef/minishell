@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:35:33 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 17:10:55 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTOR_H
 
 # include "ast.h"
+# include "lexer_struct.h"
 # include "main.h"
 # include <dirent.h>
 # include <fcntl.h>
