@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:40:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 15:22:33 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:53:48 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	exec_unset(char *input, t_internal_cmd *main)
 {
 	char	*key;
 
+	if (main->av[1] == NULL)
+		return (0);
 	key = parse_key(input);
 	if (key)
 	{

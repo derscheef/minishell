@@ -6,36 +6,28 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:48:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 15:30:16 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 19:59:30 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execute_echo(char *input, int fd)
+int	execute_echo(t_internal_cmd *p, int fd)
 {
-	int	i;
-	int	print_newline;
+	size_t	i;
 
-	i = 4;
-	print_newline = 1;
-	while (input[i] == ' ')
+	if (!p || fd < 0)
 	{
+		return (-1);
+	}
+	i = 1;
+	while (i < p->ac)
+	{
+		write(fd, p->av[i], strlen(p->av[i]));
+		if (i < p->ac - 1)
+			write(fd, " ", 1);
 		i++;
 	}
-	if (ft_strncmp(input + i, "-n", 2) == 0)
-	{
-		print_newline = 0;
-		i += 2;
-	}
-	while (input[i] == ' ')
-	{
-		i++;
-	}
-	ft_putstr_fd(input + i, fd);
-	if (print_newline)
-	{
-		ft_putchar_fd('\n', fd);
-	}
+	write(fd, "\n", 1);
 	return (0);
 }

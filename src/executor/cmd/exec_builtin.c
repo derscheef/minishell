@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:05:41 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:16:48 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	handle_fd(t_internal_cmd *p)
 
 	fd = 1;
 	if (!p->is_stdout)
-		fd = p->fd_write;
+		fd = STDOUT_FILENO;
 	return (fd);
 }
 
@@ -49,13 +49,12 @@ void	execute_builtin(t_internal_cmd *p)
 
 	input = convert_input(p);
 	fd = handle_fd(p);
-	*p->exit_code = 69;
 	if (ft_strncmp(input, "clear", 5) == 0)
 		*p->exit_code = clear_term();
 	else if (ft_strncmp(input, "exit", 4) == 0)
-		exit_routine(p->av[1]);
+		exit_routine(input, p);
 	else if (ft_strncmp(input, "echo", 4) == 0)
-		*p->exit_code = execute_echo(input, fd);
+		*p->exit_code = execute_echo(p, fd);
 	else if (ft_strncmp(input, "pwd", 3) == 0)
 		*p->exit_code = print_pwd(fd);
 	else if (ft_strncmp(input, "cd", 2) == 0)
@@ -68,5 +67,4 @@ void	execute_builtin(t_internal_cmd *p)
 		*p->exit_code = print_env(p, fd);
 	else
 		ft_putstr("Command not found\n");
-	// close(fd);
 }

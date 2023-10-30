@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:20:39 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:16:58 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # include <stdlib.h>
 
 void	routine(t_main *main);
-void	exit_routine(char *exit_code_str);
+void	exit_routine(char *exit_code_str, t_internal_cmd *p);
 
 #endif
