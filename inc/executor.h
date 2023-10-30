@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 14:54:00 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:35:33 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void			execute_simple_command(t_cmd p);
 // Actual execution
 bool			execute_internal_command(t_internal_cmd *p);
 bool			execute_external(t_internal_cmd *p);
-bool			execute_builtin(t_internal_cmd *p);
+void			execute_builtin(t_internal_cmd *p);
 
 #endif

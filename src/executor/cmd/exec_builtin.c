@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:29:29 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:36:28 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,23 @@ char	*convert_input(t_internal_cmd *p)
 	return (input);
 }
 
-bool	execute_builtin(t_internal_cmd *p)
+int	handle_fd(t_internal_cmd *p)
+{
+	int	fd;
+
+	fd = 1;
+	if (!p->is_stdout)
+		fd = p->fd_write;
+	return (fd);
+}
+
+void	execute_builtin(t_internal_cmd *p)
 {
 	int		fd;
 	char	*input;
 
 	input = convert_input(p);
-	fd = 1;
-	if (!p->is_stdout)
-		fd = p->fd_write;
+	fd = handle_fd(p);
 	*p->exit_code = 69;
 	if (ft_strncmp(input, "clear", 5) == 0)
 		*p->exit_code = clear_term();
@@ -58,9 +66,6 @@ bool	execute_builtin(t_internal_cmd *p)
 		*p->exit_code = exec_unset(input, p);
 	else if (ft_strncmp(input, "env", 3) == 0)
 		*p->exit_code = print_env(p, fd);
-	else if (ft_strncmp(input, "", 1) == 0)
-		;
 	else
 		ft_putstr("Command not found\n");
-	return (false);
 }
