@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:05:51 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:49:24 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	routine(t_main *main)
 	{
 		main->input = readline("minishell> ");
 		if (!main->input)
-			exit_routine();
+			exit_routine(main->input);
 		add_history(main->input);
 		lexer(main->input, ft_strlen(main->input), &main->lexer,
 			main->env_list);
