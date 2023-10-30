@@ -10,13 +10,13 @@ NAME = minishell
 
 LEXER_DIR = lexer
 LEXER_FILES = main.c destroy.c get_char_type.c \
-tokens/init.c tokens/destroy.c \
+tokens/init.c tokens/destroy.c tokens/combine_redirection.c \
 states/general.c states/quote.c
 
 PARSER_DIR = parser
 PARSER_FILES = main.c destroy.c \
 job/main.c job/job1.c \
-cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/simple_cmd.c \
+cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/cmd3.c cmd/simple_cmd.c \
 tokenlist/main.c
 
 ROUTINE_DIR = routine

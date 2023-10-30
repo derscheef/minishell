@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   job.c                                              :+:      :+:    :+:   */
+/*   combine_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 16:49:35 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:23:10 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/30 18:07:58 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/30 18:12:01 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "lexer.h"
+#include "utils.h"
 
-void	execute_job(t_executor *p)
+void	combine_redirection_tokens(t_token *token)
 {
-	if (p->node->type == NODE_PIPE)
-		execute_pipe(p);
-	else
-		execute_command((t_cmd){p->node, p->env, p->env_node, false, false, 0,
-			0, NULL, NULL, p->exit_code, false});
+	t_token	*tmp;
+	char	*join;
+
+	if (token->type == CHAR_GREATER)
+		token->type = CHAR_DGREATER;
+	else if (token->type == CHAR_LESSER)
+		token->type = CHAR_DLESSER;
+	tmp = token->next;
+	join = ft_strjoin(token->data, tmp->data);
+	free(token->data);
+	token->data = join;
+	token->next = tmp->next;
+	free(tmp->data);
+	free(tmp);
 }

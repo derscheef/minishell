@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:10:55 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:17:40 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_cmd
 	char		*redirect_in;
 	char		*redirect_out;
 	int			*exit_code;
+	bool		is_append;
 }				t_cmd;
 
 typedef struct s_internal_cmd
@@ -47,6 +48,7 @@ typedef struct s_internal_cmd
 	char		*redirect_in;
 	char		*redirect_out;
 	int			*exit_code;
+	bool		is_append;
 }				t_internal_cmd;
 
 typedef struct s_executor

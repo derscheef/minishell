@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:09:22 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:10:19 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:11:28 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum e_token_type
 	CHAR_TAB = '\t',
 	CHAR_NEWLINE = '\n',
 	CHAR_GREATER = '>',
+	CHAR_DGREATER,
+	CHAR_DLESSER,
 	CHAR_LESSER = '<',
 	CHAR_NULL = 0,
 	TOKEN = -1,

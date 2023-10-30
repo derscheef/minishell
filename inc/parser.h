@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:56:35 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:42:12 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:21:05 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_node		*parse_job1(t_parse_program *p);
 t_node		*parse_cmd(t_parse_program *p);
 t_node		*parse_cmd1(t_parse_program *p);
 t_node		*parse_cmd2(t_parse_program *p);
+t_node		*parse_cmd3(t_parse_program *p);
+
 t_node		*parse_simple_cmd(t_parse_program *p);
 
 // Token list

@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:14:25 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:06:45 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ bool	lexer(char *str, size_t size, t_main *main)
 			p.token->data = tmp;
 			main->lexer.ntoks++;
 		}
+		else if ((p.token->type == CHAR_GREATER
+				&& p.token->next->type == CHAR_GREATER)
+			|| (p.token->type == CHAR_LESSER
+				&& p.token->next->type == CHAR_LESSER))
+			combine_redirection_tokens(p.token);
 		p.token = p.token->next;
 	}
 	return (false);

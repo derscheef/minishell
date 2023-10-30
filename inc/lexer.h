@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:10:29 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:09:08 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_token_type		get_char_type(char c);
 // Token functions
 bool				init_token(t_token *token, int datasize);
 void				destroy_tokens(t_token *token);
+void				combine_redirection_tokens(t_token *token);
 
 // State handling
 bool				handle_general_state(t_lexer_program *p);
