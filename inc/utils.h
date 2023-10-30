@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/26 13:10:52 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:18:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ void	print_tokens(t_token *tokens);
 t_node	*new_node(char *data, t_node_type type);
 void	attach_node(t_node *root, t_node *left, t_node *right);
 void	destroy_node(t_node *node);
+
+// ENV utils
+char	*replace_env_var(char *str, t_env_node *env_list);
 
 #endif

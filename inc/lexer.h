@@ -6,13 +6,14 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/24 18:37:11 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:12:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
+# include "env_list.h"
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
@@ -61,6 +62,7 @@ typedef struct s_lexer_program
 {
 	t_lexer				*lexer;
 	t_token				*token;
+	t_env_node			*env_list;
 	t_state				state;
 	size_t				i;
 	size_t				j;
@@ -72,7 +74,8 @@ typedef struct s_lexer_program
 }						t_lexer_program;
 
 // Return status code
-bool					lexer(char *str, size_t size, t_lexer *lexer);
+bool					lexer(char *str, size_t size, t_lexer *lexer,
+							t_env_node *env_list);
 
 t_token_type			get_char_type(char c);
 

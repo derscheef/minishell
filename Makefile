@@ -26,9 +26,11 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 UTILS_DIR = utils
-UTILS_FILES = ft_putchar.c ft_putstr.c split.c \
+UTILS_FILES = ft_putchar.c ft_putstr.c split.c skip_to_set.c \
 debug/print_tokens.c \
-nodes/new.c nodes/destroy.c nodes/attach.c
+nodes/new.c nodes/destroy.c nodes/attach.c \
+env/replace_env_var.c \
+
 
 EXECUTER_DIR = executer
 EXECUTER_FILES = main.c
