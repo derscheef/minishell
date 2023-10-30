@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:06:16 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:13:36 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:58:46 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	execute_simple_command(t_cmd p)
 {
 	t_internal_cmd	*cmd;
 
-	cmd = &(t_internal_cmd){0, NULL, p.env, p.is_stdin, p.is_stdout, p.fd_read,
-		p.fd_write, p.redirect_in, p.redirect_out};
+	cmd = &(t_internal_cmd){0, NULL, p.env, p.env_node, p.is_stdin, p.is_stdout,
+		p.fd_read, p.fd_write, p.redirect_in, p.redirect_out};
 	if (init_arguments(&p, cmd))
 		return ;
 	execute_internal_command(cmd);

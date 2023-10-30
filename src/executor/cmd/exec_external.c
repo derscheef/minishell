@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:18:55 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 11:38:57 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,84 @@
 
 // TODO: implement signal handling
 
+static void	free_str_arr(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+static char	*check_path(char *path, char *command)
+{
+	DIR				*dir;
+	struct dirent	*entry;
+	char			*rv;
+	char			*tmp;
+
+	rv = NULL;
+	dir = opendir(path);
+	if (!dir)
+		return (NULL);
+	entry = readdir(dir);
+	while (entry)
+	{
+		if (!ft_strcmp(entry->d_name, command))
+		{
+			tmp = ft_strjoin(path, "/");
+			rv = ft_strjoin(tmp, command);
+			free(tmp);
+			break ;
+		}
+		entry = readdir(dir);
+	}
+	closedir(dir);
+	return (rv);
+}
+
+static char	*get_bin_path(t_env_node *env, char *command)
+{
+	char	*path_var;
+	char	**paths;
+	char	*found_path;
+	int		i;
+
+	i = -1;
+	while (env)
+	{
+		if (ft_strncmp(env->key, "PATH", 5) == 0)
+		{
+			path_var = env->value;
+			break ;
+		}
+		env = env->next;
+	}
+	if (!path_var)
+		return (NULL);
+	paths = ft_split(path_var, ':');
+	if (!paths)
+		return (NULL);
+	found_path = NULL;
+	while (paths[++i] && !found_path)
+		found_path = check_path(paths[i], command);
+	return (free_str_arr(paths), found_path);
+}
+
 bool	execute_external(t_internal_cmd *p)
 {
 	pid_t	pid;
 	int		stdout_fd;
 	int		fd;
+	char	*path;
 
+	path = get_bin_path(p->env_node, p->av[0]);
+	if (!path)
+		path = ft_strdup(p->av[0]);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -40,14 +112,16 @@ bool	execute_external(t_internal_cmd *p)
 			dup2(p->fd_read, STDIN_FILENO);
 		if (p->is_stdout)
 			dup2(p->fd_write, STDOUT_FILENO);
-		if (execve(p->av[0], p->av, p->env) == -1)
+		if (execve(path, p->av, p->env) == -1)
 		{
 			dup2(stdout_fd, STDOUT_FILENO);
-			printf("Command not found: %s\n", p->av[0]);
+			printf("Command not found: %s\n", path);
+			free(path);
 			return (true);
 		}
 	}
-	else if (pid < 0)
+	free(path);
+	if (pid < 0)
 		return (perror("fork"), true);
 	while (waitpid(pid, NULL, 0) <= 0)
 		;
