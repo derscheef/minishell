@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:36:28 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:05:41 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	execute_builtin(t_internal_cmd *p)
 	if (ft_strncmp(input, "clear", 5) == 0)
 		*p->exit_code = clear_term();
 	else if (ft_strncmp(input, "exit", 4) == 0)
-		*p->exit_code = exit_routine();
+		exit_routine(p->av[1]);
 	else if (ft_strncmp(input, "echo", 4) == 0)
 		*p->exit_code = execute_echo(input, fd);
 	else if (ft_strncmp(input, "pwd", 3) == 0)
@@ -68,4 +68,5 @@ void	execute_builtin(t_internal_cmd *p)
 		*p->exit_code = print_env(p, fd);
 	else
 		ft_putstr("Command not found\n");
+	// close(fd);
 }

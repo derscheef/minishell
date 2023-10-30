@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:14:38 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 19:06:05 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	routine(t_main *main)
 	{
 		main->input = readline("minishell> ");
 		if (!main->input)
-			exit_routine();
+			exit_routine(main->input);
 		add_history(main->input);
 		lexer(main->input, ft_strlen(main->input), main);
 		if (main->lexer.ntoks == 0)

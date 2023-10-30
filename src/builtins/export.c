@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 15:22:08 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:56:12 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	modify_or_add_env(t_internal_cmd *main, char *key, char *value)
 	if (!new_node)
 	{
 		perror("Error allocating memory for new env node");
-		exit_routine();
+		exit_routine("1");
 	}
 	new_node->key = ft_strdup(key);
 	new_node->value = ft_strdup(value);
