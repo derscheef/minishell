@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 16:26:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:19:11 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static char	*remove_quotes(char *str)
 	return (new_str);
 }
 
-bool	lexer(char *str, size_t size, t_lexer *lexer)
+bool	lexer(char *str, size_t size, t_lexer *lexer, t_env_node *env_list)
 {
 	t_lexer_program	p;
 	char			*tmp;
@@ -107,6 +107,7 @@ bool	lexer(char *str, size_t size, t_lexer *lexer)
 	{
 		if (p.token->type == TOKEN)
 		{
+			p.token->data = replace_env_var(p.token->data, env_list);
 			tmp = remove_quotes(p.token->data);
 			free(p.token->data);
 			p.token->data = tmp;

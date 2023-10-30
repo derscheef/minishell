@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:45:19 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:05:51 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	routine(t_main *main)
 		if (!main->input)
 			exit_routine();
 		add_history(main->input);
-		lexer(main->input, ft_strlen(main->input), &main->lexer);
+		lexer(main->input, ft_strlen(main->input), &main->lexer,
+			main->env_list);
 		if (main->lexer.ntoks == 0)
 		{
 			reset_routine(main);
