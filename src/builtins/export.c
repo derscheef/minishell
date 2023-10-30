@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 11:04:08 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:45:22 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	modify_or_add_env(t_main *main, char *key, char *value)
 	env_listadd_back(&(main->env_list), new_node);
 }
 
-int	exec_export(char *input, t_main *main)
+int	exec_export(char *input, t_internal_cmd *main)
 {
 	char	*eq_pos;
 	char	*key;

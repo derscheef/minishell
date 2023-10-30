@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 11:02:32 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:49:38 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 int	clear_term(void);
 int	print_env(t_main *main);
-int	print_pwd(void);
+int	print_pwd(int fd);
 int	execute_echo(char *input);
-int	exec_export(char *input, t_main *main);
-int	exec_unset(char *input, t_main *main);
+int	exec_export(char *input, t_internal_cmd *main);
+int	exec_unset(char *input, t_internal_cmd *main);
 int	exec_cd(char *input);
 
 #endif

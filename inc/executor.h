@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 10:43:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:25:42 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_cmd
 	int			fd_write;
 	char		*redirect_in;
 	char		*redirect_out;
+	int			*exit_code;
 }				t_cmd;
 
 typedef struct s_internal_cmd
@@ -43,6 +44,7 @@ typedef struct s_internal_cmd
 	int			fd_write;
 	char		*redirect_in;
 	char		*redirect_out;
+	int			*exit_code;
 }				t_internal_cmd;
 
 typedef struct s_executor
@@ -50,6 +52,7 @@ typedef struct s_executor
 	t_node		*node;
 	char		**env;
 	t_env_node	*env_node;
+	int			*exit_code;
 }				t_executor;
 
 bool			execute(t_main *p);
