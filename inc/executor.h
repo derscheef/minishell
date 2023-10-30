@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 14:25:42 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:54:00 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTOR_H
 
 # include "ast.h"
+# include "main.h"
 # include <dirent.h>
 # include <fcntl.h>
 # include <stdbool.h>

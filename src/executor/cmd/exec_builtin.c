@@ -6,18 +6,38 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 14:44:09 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:14:23 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*convert_input(t_internal_cmd *p)
+{
+	char	*input;
+	int		i;
+
+	i = 0;
+	input = NULL;
+	while (p->av[i])
+	{
+		if (i == 0)
+			input = ft_strdup(p->av[i]);
+		else
+			input = ft_strjoin(input, p->av[i]);
+		if (p->av[i + 1])
+			input = ft_strjoin(input, " ");
+		i++;
+	}
+	return (input);
+}
 
 bool	execute_builtin(t_internal_cmd *p)
 {
 	int		fd;
 	char	*input;
 
-	input = p->av[0];
+	input = convert_input(p);
 	fd = 1;
 	if (!p->is_stdout)
 		fd = p->fd_write;
@@ -42,5 +62,5 @@ bool	execute_builtin(t_internal_cmd *p)
 		;
 	else
 		ft_putstr("Command not found\n");
-	// printf("exit code: %d\n", p->exit_code);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:40:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 11:02:13 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:22:33 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	remove_env_node(t_env_node **head, char *key)
 	}
 }
 
-int	exec_unset(char *input, t_main *main)
+int	exec_unset(char *input, t_internal_cmd *main)
 {
 	char	*key;
 
 	key = parse_key(input);
 	if (key)
 	{
-		remove_env_node(&main->env_list, key);
+		remove_env_node(&main->env_node, key);
 		free(key);
 	}
 	return (0);
