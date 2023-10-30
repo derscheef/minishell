@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:18:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 15:57:33 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:59:44 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list)
 char	*replace_env_var(char *str, t_env_node *env_list)
 {
 	char		*env_var;
-	char		*tmp;
 	t_env_var	env;
 
 	env_var = skip_to_set(str, "$\'");
