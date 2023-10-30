@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:21:44 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:43:03 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum e_node_type
 	NODE_BCKGRND,
 	NODE_SEQ,
 	NODE_REDIRECT_IN,
+	NODE_REDIRECT_IN_HEREDOC,
 	NODE_REDIRECT_OUT_APPEND,
 	NODE_REDIRECT_OUT,
 	NODE_CMDPATH,
