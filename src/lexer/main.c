@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:52:29 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:06:34 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,32 +68,6 @@ static bool	tokenize_input(t_lexer_program *p)
 		p->i++;
 	}
 	return (false);
-}
-
-static char	*remove_quotes(char *str)
-{
-	char	*new_str;
-	int		i;
-	int		j;
-	bool	is_in_dquote;
-
-	is_in_dquote = false;
-	new_str = malloc(strlen(str) + 1);
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == '\"')
-			is_in_dquote = !is_in_dquote;
-		if ((str[i] != '\'' && str[i] != '\"') || (is_in_dquote
-				&& str[i] != '\"'))
-			new_str[j++] = str[i];
-		i++;
-	}
-	new_str[j] = '\0';
-	return (new_str);
 }
 
 bool	lexer(char *str, size_t size, t_main *main)
