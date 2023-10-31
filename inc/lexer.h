@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 15:07:21 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:11:16 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ bool				handle_general_state(t_lexer_program *p);
 bool				handle_quote_state(t_lexer_program *p, char quote);
 
 // Cleanup input
+char				*handle_general(char **str, char **rv, t_state *state);
+char				*handle_dquote(char **str, char **rv, t_state *state);
+char				*handle_quote(char **str, char **rv, t_state *state);
 char				*remove_quotes(char *str);
-
 #endif

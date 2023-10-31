@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:52:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 17:09:05 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:03:28 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_main
 	int			exit_code;
 
 	char		*input;
+	char		*tmp;
 }				t_main;
 
 #endif
