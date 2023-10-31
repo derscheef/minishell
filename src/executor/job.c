@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   job.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 16:49:35 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/30 18:23:10 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+void	execute_job(t_executor *p)
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
+	if (p->node->type == NODE_PIPE)
+		execute_pipe(p);
+	else
+		execute_command((t_cmd){p->node, p->env, p->env_node, false, false, 0,
+			0, NULL, NULL, p->exit_code, false});
 }

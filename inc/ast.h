@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 11:57:24 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/30 20:43:03 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef AST_H
+# define AST_H
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+typedef enum e_node_type
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
-}
+	NODE_PIPE,
+	NODE_BCKGRND,
+	NODE_SEQ,
+	NODE_REDIRECT_IN,
+	NODE_REDIRECT_IN_HEREDOC,
+	NODE_REDIRECT_OUT_APPEND,
+	NODE_REDIRECT_OUT,
+	NODE_CMDPATH,
+	NODE_ARGUMENT,
+	NODE_DATA,
+}					t_node_type;
+
+typedef struct s_node
+{
+	t_node_type		type;
+	char			*data;
+	struct s_node	*left;
+	struct s_node	*right;
+}					t_node;
+
+#endif

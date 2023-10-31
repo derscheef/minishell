@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 14:52:26 by yscheef           #+#    #+#             */
+/*   Updated: 2023/10/30 17:09:05 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MAIN_H
+# define MAIN_H
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+# include "ast.h"
+# include "env_list.h"
+
+typedef struct s_main
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
-}
+	t_lexer		lexer;
+	t_node		*ast;
+	t_env_node	*env_list;
+	int			exit_code;
+
+	char		*input;
+}				t_main;
+
+#endif

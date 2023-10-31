@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 12:41:00 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 14:28:54 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+t_node	*parse_job(t_parse_program *p)
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
+	t_token	*save;
+	t_node	*node;
+
+	save = p->cur_token;
+	node = parse_job1(p);
+	if (node)
+		return (node);
+	p->cur_token = save;
+	node = parse_cmd(p);
+	if (node)
+		return (node);
+	return (NULL);
 }

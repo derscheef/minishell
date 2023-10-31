@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   get_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/30 15:32:40 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/30 15:36:52 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "env_list.h"
+#include "utils.h"
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+char	*get_env_var(char *key, t_env_node *env_list)
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
+	while (env_list)
+	{
+		if (!ft_strcmp(env_list->key, key))
+			return (env_list->value);
+		env_list = env_list->next;
+	}
+	return (NULL);
 }

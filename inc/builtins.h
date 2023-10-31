@@ -6,22 +6,26 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/25 12:31:59 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/30 19:56:29 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-# include "minishell.h"
+# include "executor.h"
+# include "routine.h"
 # include <curses.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <term.h>
 
-void	clear_term(void);
-void	print_env(void);
-void	print_pwd(void);
-void	execute_echo(char *input);
+int	clear_term(void);
+int	print_env(t_internal_cmd *main, int fd);
+int	print_pwd(int fd);
+int	execute_echo(t_internal_cmd *p, int fd);
+int	exec_export(char *input, t_internal_cmd *main);
+int	exec_unset(char *input, t_internal_cmd *main);
+int	exec_cd(char *input);
 
 #endif

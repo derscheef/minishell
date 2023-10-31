@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 16:26:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:52:29 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ static char	*remove_quotes(char *str)
 	char	*new_str;
 	int		i;
 	int		j;
+	bool	is_in_dquote;
 
+	is_in_dquote = false;
 	new_str = malloc(strlen(str) + 1);
 	if (!new_str)
 		return (NULL);
@@ -83,7 +85,10 @@ static char	*remove_quotes(char *str)
 	j = 0;
 	while (str[i])
 	{
-		if (str[i] != '\'' && str[i] != '\"')
+		if (str[i] == '\"')
+			is_in_dquote = !is_in_dquote;
+		if ((str[i] != '\'' && str[i] != '\"') || (is_in_dquote
+				&& str[i] != '\"'))
 			new_str[j++] = str[i];
 		i++;
 	}
@@ -91,27 +96,34 @@ static char	*remove_quotes(char *str)
 	return (new_str);
 }
 
-bool	lexer(char *str, size_t size, t_lexer *lexer)
+bool	lexer(char *str, size_t size, t_main *main)
 {
 	t_lexer_program	p;
 	char			*tmp;
 
-	if (initial_checks(str, size, lexer))
+	if (initial_checks(str, size, &main->lexer))
 		return (true);
-	if (init_lexer_program(str, size, lexer, &p))
+	if (init_lexer_program(str, size, &main->lexer, &p))
 		return (1);
 	if (tokenize_input(&p))
 		return (1);
-	p.token = lexer->tokens;
+	p.token = main->lexer.tokens;
 	while (p.token)
 	{
 		if (p.token->type == TOKEN)
 		{
+			p.token->data = replace_env_var(p.token->data, main->env_list,
+					main->exit_code);
 			tmp = remove_quotes(p.token->data);
 			free(p.token->data);
 			p.token->data = tmp;
-			lexer->ntoks++;
+			main->lexer.ntoks++;
 		}
+		else if ((p.token->type == CHAR_GREATER
+				&& p.token->next->type == CHAR_GREATER)
+			|| (p.token->type == CHAR_LESSER
+				&& p.token->next->type == CHAR_LESSER))
+			combine_redirection_tokens(p.token);
 		p.token = p.token->next;
 	}
 	return (false);

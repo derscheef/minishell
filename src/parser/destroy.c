@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer.h                                         :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:21:34 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/24 16:28:23 by yscheef          ###   ########.fr       */
+/*   Created: 2023/10/28 19:41:29 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/28 19:45:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTER_H
-# define EXECUTER_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-void	exec(char *input);
-#endif
+void	destroy_ast(t_node *node)
+{
+	if (!node)
+		return ;
+	destroy_ast(node->left);
+	destroy_ast(node->right);
+	free(node->data);
+	free(node);
+}
