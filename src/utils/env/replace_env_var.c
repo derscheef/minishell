@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:18:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 17:04:48 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 14:24:24 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,27 @@ static bool	is_env_var(char *str, t_env_node *env_list)
 	char	*var;
 	char	*end_of_var;
 
-	end_of_var = skip_to_set(str, " \"\'\t\n");
+	if ((ft_strchr(" \"\'\t\n", *str)))
+		return (false);
+	end_of_var = skip_to_set(str, "$ \"\'\t\n");
 	var = ft_substr(str, 0, end_of_var - str);
 	if (get_env_var(var, env_list))
 		return (free(var), true);
-	else if (ft_strcmp(var, "?") == 0)
+	else if (ft_strncmp(var, "?", 1) == 0)
 		return (free(var), true);
-	return (false);
+	else if (ft_strncmp(str, "$", 1) == 0)
+		return (free(var), false);
+	return (true);
 }
 
 static void	init_env_var(char *str, char *start_var, t_env_var *env_var)
 {
 	char	*end_of_var;
 
-	end_of_var = skip_to_set(start_var, " \"\'\t\n");
+	if (ft_strncmp(start_var, "$?", 2) == 0)
+		end_of_var = start_var + 2;
+	else
+		end_of_var = skip_to_set(start_var + 1, "$ \"\'\t\n");
 	env_var->start = ft_substr(str, 0, start_var - str);
 	env_var->end = ft_substr(str, end_of_var - str, ft_strlen(str));
 	env_var->var = ft_substr(start_var, 0, end_of_var - start_var);
@@ -50,16 +57,16 @@ static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list,
 	char	*tmp;
 
 	if (ft_strcmp(env->var + 1, "?") == 0)
-	{
-		free(env->var);
-		env->var = ft_itoa(exit_code);
-	}
-	tmp = get_env_var(env->var + 1, env_list);
+		tmp = ft_itoa(exit_code);
+	else if (ft_strcmp(env->var, "$") == 0)
+		tmp = ft_strdup("$");
+	else
+		tmp = get_env_var(env->var + 1, env_list);
+	free(env->var);
 	if (tmp)
-	{
-		free(env->var);
 		env->var = ft_strdup(tmp);
-	}
+	else
+		env->var = ft_strdup("");
 	free(str);
 	str = ft_strjoin(env->start, env->var);
 	free(env->start);
@@ -85,6 +92,8 @@ char	*replace_env_var(char *str, t_env_node *env_list, int exit_code)
 		{
 			if (is_env_var(env_var + 1, env_list))
 				break ;
+			else if (ft_strncmp(env_var, "$$", 2) == 0)
+				env_var++;
 			env_var++;
 		}
 		env_var = skip_to_set(env_var, "$\'");

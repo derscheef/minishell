@@ -1,5 +1,4 @@
 minishell
 minishell_tester
-
 *.o
 *.a

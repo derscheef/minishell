@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:28:35 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 14:27:58 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 		*p->exit_code = exec_unset(input, p);
 	else if (ft_strncmp(input, "env", 3) == 0)
 		*p->exit_code = print_env(p, fd);
-	else
-		ft_putstr("Command not found");
 }
 
 void	execute_builtin(t_internal_cmd *p)
