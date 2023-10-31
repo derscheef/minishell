@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 10:59:48 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:49:39 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ char	*construct_full_path(const char *current, const char *relative)
 	return (full_path);
 }
 
-int	exec_cd(char *input)
+int	exec_cd(t_internal_cmd *cmd, char *input)
 {
 	char	cwd[4096];
 	char	*full_path;
 
+	if (cmd->ac > 2)
+		return (0);
 	full_path = NULL;
 	input += 3;
 	if (!input || !*input)
