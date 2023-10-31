@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 14:27:58 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:49:09 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 	else if (ft_strncmp(input, "pwd", 3) == 0)
 		*p->exit_code = print_pwd(fd);
 	else if (ft_strncmp(input, "cd", 2) == 0)
-		*p->exit_code = exec_cd(input);
+		*p->exit_code = exec_cd(p, input);
 	else if (ft_strncmp(input, "export", 6) == 0)
 		*p->exit_code = exec_export(input, p);
 	else if (ft_strncmp(input, "unset", 5) == 0)

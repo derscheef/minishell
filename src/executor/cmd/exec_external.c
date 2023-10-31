@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 15:45:31 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:52:42 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,17 +121,17 @@ bool	execute_external(t_internal_cmd *p)
 			dup2(p->fd_write, STDOUT_FILENO);
 		if (execve(path, p->av, p->env) == -1)
 		{
-			// switch (errno)
-			// {
-			// case EACCES:
-			// 	*p->exit_code = 126; // Command invoked cannot execute
-			// 	perror("Permission denied");
-			// 	break ;
-			// case ENOENT: /* No such file or directory */
-			// default:
-			// 	*p->exit_code = 127; // Command not found
-			// 	perror("command not found");
-			// }
+			switch (errno)
+			{
+			case EACCES:
+				*p->exit_code = 126; // Command invoked cannot execute
+				perror("Permission denied");
+				break ;
+			case ENOENT: /* No such file or directory */
+			default:
+				*p->exit_code = 127; // Command not found
+				perror("command not found");
+			}
 			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
 			return (true);

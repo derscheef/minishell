@@ -6,18 +6,23 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:02:28 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 16:58:53 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:25:33 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// fd[0] = read
-// fd[1] = write
+void	init_pipe(int fd[2], int *read_pipe, int *write_pipe)
+{
+	pipe(fd);
+	*read_pipe = fd[0];
+	*write_pipe = fd[1];
+}
+
 void	execute_pipe(t_executor *p)
 {
-	int		fd[2];
 	t_node	*node;
+	int		fd[2];
 	int		read_pipe;
 	int		write_pipe;
 
@@ -38,9 +43,8 @@ void	execute_pipe(t_executor *p)
 		read_pipe = fd[0];
 		node = node->right;
 	}
-	read_pipe = fd[0];
 	close(write_pipe);
-	execute_command((t_cmd){node, p->env, p->env_node, true, false, read_pipe,
-		0, NULL, NULL, p->exit_code, false});
-	close(read_pipe);
+	execute_command((t_cmd){node, p->env, p->env_node, true, false, fd[0], 0,
+		NULL, NULL, p->exit_code, false});
+	close(fd[0]);
 }

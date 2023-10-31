@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 15:06:34 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:07:01 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,9 @@ static bool	tokenize_input(t_lexer_program *p)
 bool	lexer(char *str, size_t size, t_main *main)
 {
 	t_lexer_program	p;
-	char			*tmp;
 
-	if (initial_checks(str, size, &main->lexer))
-		return (true);
-	if (init_lexer_program(str, size, &main->lexer, &p))
-		return (1);
-	if (tokenize_input(&p))
+	if (initial_checks(str, size, &main->lexer) || init_lexer_program(str, size,
+			&main->lexer, &p) || tokenize_input(&p))
 		return (1);
 	p.token = main->lexer.tokens;
 	while (p.token)
@@ -88,9 +84,9 @@ bool	lexer(char *str, size_t size, t_main *main)
 		{
 			p.token->data = replace_env_var(p.token->data, main->env_list,
 					main->exit_code);
-			tmp = remove_quotes(p.token->data);
+			main->tmp = remove_quotes(p.token->data);
 			free(p.token->data);
-			p.token->data = tmp;
+			p.token->data = main->tmp;
 			main->lexer.ntoks++;
 		}
 		else if ((p.token->type == CHAR_GREATER
