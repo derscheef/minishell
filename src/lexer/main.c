@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:06:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:40:32 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ static char	*remove_quotes(char *str)
 	char	*new_str;
 	int		i;
 	int		j;
+	bool	is_in_dquote;
 
+	is_in_dquote = false;
 	new_str = malloc(strlen(str) + 1);
 	if (!new_str)
 		return (NULL);
@@ -83,7 +85,10 @@ static char	*remove_quotes(char *str)
 	j = 0;
 	while (str[i])
 	{
-		if (str[i] != '\'' && str[i] != '\"')
+		if (str[i] == '\"')
+			is_in_dquote = !is_in_dquote;
+		if ((str[i] != '\'' && str[i] != '\"') || (is_in_dquote
+				&& str[i] != '\"'))
 			new_str[j++] = str[i];
 		i++;
 	}
