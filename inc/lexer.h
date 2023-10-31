@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:09:08 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:07:21 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ void				combine_redirection_tokens(t_token *token);
 // State handling
 bool				handle_general_state(t_lexer_program *p);
 bool				handle_quote_state(t_lexer_program *p, char quote);
+
+// Cleanup input
+char				*remove_quotes(char *str);
 
 #endif

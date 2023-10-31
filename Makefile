@@ -9,7 +9,7 @@ INCLUDES = -L /opt/homebrew/opt/readline/lib -lft -lreadline -lncurses
 NAME = minishell
 
 LEXER_DIR = lexer
-LEXER_FILES = main.c destroy.c get_char_type.c \
+LEXER_FILES = main.c destroy.c get_char_type.c remove_quotes.c \
 tokens/init.c tokens/destroy.c tokens/combine_redirection.c \
 states/general.c states/quote.c
 
