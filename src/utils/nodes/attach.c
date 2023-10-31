@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   attach.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:02:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:16 by ndivjak          ###   ########.fr       */
+/*   Created: 2023/10/26 12:55:28 by ndivjak           #+#    #+#             */
+/*   Updated: 2023/10/26 14:33:36 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	handle_quote_state(t_lexer_program *p, char quote)
+void	attach_node(t_node *root, t_node *left, t_node *right)
 {
-	if (!p || !quote)
-		return (true);
-	p->token->data[p->j++] = p->c;
-	if (p->c == quote)
-		p->state = STATE_GENERAL;
-	return (false);
+	if (!root)
+		return ;
+	root->left = left;
+	root->right = right;
 }

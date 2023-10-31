@@ -3,15 +3,21 @@ YELLOW=\033[1;33m
 NC=\033[0m
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Werror -Wextra -g
 INCLUDES = -L /opt/homebrew/opt/readline/lib -lft -lreadline -lncurses
 
 NAME = minishell
 
 LEXER_DIR = lexer
 LEXER_FILES = main.c destroy.c get_char_type.c \
-tokens/init.c tokens/destroy.c \
+tokens/init.c tokens/destroy.c tokens/combine_redirection.c \
 states/general.c states/quote.c
+
+PARSER_DIR = parser
+PARSER_FILES = main.c destroy.c \
+job/main.c job/job1.c \
+cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/cmd3.c cmd/cmd4.c cmd/simple_cmd.c \
+tokenlist/main.c
 
 ROUTINE_DIR = routine
 ROUTINE_FILES = main.c
@@ -20,25 +26,31 @@ SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
 
 UTILS_DIR = utils
-UTILS_FILES = ft_putchar.c ft_putstr.c split.c \
+UTILS_FILES = ft_putchar.c ft_putstr.c split.c skip_to_set.c \
 debug/print_tokens.c \
+nodes/new.c nodes/destroy.c nodes/attach.c \
+env/replace_env_var.c env/get_env_var.c \
 
-EXECUTER_DIR = executer
-EXECUTER_FILES = main.c
+
+EXECUTOR_DIR = executor
+EXECUTOR_FILES = main.c cmd.c fds.c job.c pipe.c \
+cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
+heredoc/main.c \
 
 BUILTINS_DIR = builtins
-BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c
+BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c unset.c cd.c
 
 ENV_DIR = env
-ENV_FILES = init.c print.c
+ENV_FILES = init.c print.c main.c
 
 SRC_DIR = src
 SRC_FILES = main.c \
 $(addprefix $(LEXER_DIR)/,$(LEXER_FILES)) \
+$(addprefix $(PARSER_DIR)/,$(PARSER_FILES)) \
 $(addprefix $(ROUTINE_DIR)/,$(ROUTINE_FILES)) \
 $(addprefix $(SIGNALS_DIR)/,$(SIGNALS_FILES)) \
 $(addprefix $(UTILS_DIR)/,$(UTILS_FILES)) \
-$(addprefix $(EXECUTER_DIR)/,$(EXECUTER_FILES)) \
+$(addprefix $(EXECUTOR_DIR)/,$(EXECUTOR_FILES)) \
 $(addprefix $(BUILTINS_DIR)/,$(BUILTINS_FILES)) \
 $(addprefix $(ENV_DIR)/,$(ENV_FILES))
 

@@ -19,7 +19,13 @@
 		"term.h": "c",
 		"stdbool.h": "c",
 		"stdlib.h": "c",
-		"stddef.h": "c"
+		"stddef.h": "c",
+		"env.h": "c",
+		"stdio.h": "c",
+		"main.h": "c",
+		"executor.h": "c",
+		"ast.h": "c",
+		"fcntl.h": "c"
 	}
 }
 }
