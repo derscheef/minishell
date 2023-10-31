@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:06:16 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 21:28:46 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:04:39 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static bool	destroy_arguments(t_internal_cmd *cmd)
 void	execute_simple_command(t_cmd p)
 {
 	t_internal_cmd	*cmd;
+	char			*test;
 
 	cmd = &(t_internal_cmd){0, NULL, p.env, p.env_node, p.is_stdin, p.is_stdout,
 		p.fd_read, p.fd_write, p.redirect_in, p.redirect_out, p.exit_code,

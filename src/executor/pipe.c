@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:02:28 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:23:30 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:58:53 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	execute_pipe(t_executor *p)
 	pipe(fd);
 	read_pipe = fd[0];
 	write_pipe = fd[1];
-	execute_command((t_cmd){p->node->right, p->env, p->env_node, false, true, 0,
-		write_pipe, NULL, NULL, p->exit_code, false});
-	node = p->node->left;
+	execute_command((t_cmd){p->node->left, p->env, p->env_node, false, true,
+		read_pipe, write_pipe, NULL, NULL, p->exit_code, false});
+	node = p->node->right;
 	while (node && node->type == NODE_PIPE)
 	{
 		close(write_pipe);
 		pipe(fd);
 		write_pipe = fd[1];
-		execute_command((t_cmd){node->right, p->env, p->env_node, true, true,
+		execute_command((t_cmd){node->left, p->env, p->env_node, true, true,
 			read_pipe, write_pipe, NULL, NULL, p->exit_code, false});
 		close(read_pipe);
 		read_pipe = fd[0];
-		node = node->left;
+		node = node->right;
 	}
 	read_pipe = fd[0];
 	close(write_pipe);
