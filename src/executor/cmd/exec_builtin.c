@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 22:16:48 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:28:35 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,8 @@ char	*convert_input(t_internal_cmd *p)
 	return (input);
 }
 
-int	handle_fd(t_internal_cmd *p)
+void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 {
-	int	fd;
-
-	fd = 1;
-	if (!p->is_stdout)
-		fd = STDOUT_FILENO;
-	return (fd);
-}
-
-void	execute_builtin(t_internal_cmd *p)
-{
-	int		fd;
-	char	*input;
-
-	input = convert_input(p);
-	fd = handle_fd(p);
 	if (ft_strncmp(input, "clear", 5) == 0)
 		*p->exit_code = clear_term();
 	else if (ft_strncmp(input, "exit", 4) == 0)
@@ -66,5 +51,20 @@ void	execute_builtin(t_internal_cmd *p)
 	else if (ft_strncmp(input, "env", 3) == 0)
 		*p->exit_code = print_env(p, fd);
 	else
-		ft_putstr("Command not found\n");
+		ft_putstr("Command not found");
+}
+
+void	execute_builtin(t_internal_cmd *p)
+{
+	int		fd;
+	char	*input;
+	int		original_stdout;
+	int		original_stdin;
+
+	original_stdout = dup(STDOUT_FILENO);
+	original_stdin = dup(STDIN_FILENO);
+	input = convert_input(p);
+	fd = handle_fd(p);
+	restore_fds(original_stdout, original_stdin);
+	execute_cmd_based_on_input(input, p, fd);
 }

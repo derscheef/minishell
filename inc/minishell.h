@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 10:40:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 23:04:12 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "builtins.h"
 # include "env.h"
-# include "executer.h"
 # include "executor.h"
 # include "lexer.h"
 # include "parser.h"

@@ -33,7 +33,7 @@ env/replace_env_var.c env/get_env_var.c \
 
 
 EXECUTOR_DIR = executor
-EXECUTOR_FILES = main.c cmd.c job.c pipe.c \
+EXECUTOR_FILES = main.c cmd.c fds.c job.c pipe.c \
 cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
 
 BUILTINS_DIR = builtins

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:17:40 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:31:38 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,11 @@ void			execute_simple_command(t_cmd p);
 bool			execute_internal_command(t_internal_cmd *p);
 bool			execute_external(t_internal_cmd *p);
 void			execute_builtin(t_internal_cmd *p);
+
+// fds
+int				open_input_fd(t_internal_cmd *p);
+int				open_output_fd(t_internal_cmd *p);
+int				handle_fd(t_internal_cmd *p);
+void			restore_fds(int original_stdout, int original_stdin);
 
 #endif
