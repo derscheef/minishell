@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:03:46 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 23:19:09 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:58:03 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	exit_routine(char *exit_code_str, t_internal_cmd *p)
 {
 	int	exit_code;
 
-	if (p->ac > 2)
+	if (p && p->ac > 2)
 	{
-		// printf("minishell: exit: %s: numeric argument required\n", p->av[2]);
 		ft_putendl_fd(" too many arguments", 2);
 		exit(1);
 	}
-	exit_code_str = p->av[1];
+	if (p)
+	{
+		exit_code_str = p->av[1];
+	}
 	if (!exit_code_str)
 		return (exit(0));
 	exit_code = ft_atoi(exit_code_str);
