@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:01:08 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:30:59 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:09:29 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*get_input(char *delim, t_env_node *env, int exit_code)
 	line = ft_strdup("");
 	while (1)
 	{
-		tmp = readline("> ");
+		tmp = readline("heredoc> ");
 		if (!tmp)
 			return (line);
 		if (!ft_strcmp(tmp, delim))
@@ -40,18 +40,58 @@ static char	*get_input(char *delim, t_env_node *env, int exit_code)
 	}
 }
 
+int	open_input_fd_heredoc(t_cmd *p)
+{
+	int	fd;
+
+	fd = open(p->redirect_in, O_RDONLY);
+	dup2(fd, STDIN_FILENO);
+	return (fd);
+}
+
+int	open_output_fd_heredoc(t_cmd *p)
+{
+	int	fd;
+
+	if (p->is_double)
+		fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	dup2(fd, STDOUT_FILENO);
+	return (fd);
+}
+
+int	handle_fd_heredoc(t_cmd *p)
+{
+	int	fd;
+
+	fd = 1;
+	if (p->redirect_in)
+		fd = open_input_fd_heredoc(p);
+	else if (p->redirect_out)
+		fd = open_output_fd_heredoc(p);
+	if (p->is_stdin)
+		dup2(p->fd_read, STDIN_FILENO);
+	if (p->is_stdout)
+		dup2(p->fd_write, STDOUT_FILENO);
+	return (fd);
+}
+
 bool	execute_heredoc(t_cmd *p)
 {
-	int		fd[2];
 	char	*input;
+	int		fd;
+	int		original_stdout;
+	int		original_stdin;
 
-	if (pipe(fd) == -1)
+	original_stdout = dup(STDOUT_FILENO);
+	original_stdin = dup(STDIN_FILENO);
+	if (pipe(&fd) == -1)
 		return (perror("Error: couldn't create pipe in heredoc"), true);
 	input = get_input(p->node->data, p->env_node, *p->exit_code);
-	write(fd[1], input, ft_strlen(input));
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
+	fd = handle_fd_heredoc(p);
+	write(fd, input, ft_strlen(input));
 	free(input);
+	restore_fds(original_stdout, original_stdin);
 	return (false);
 }
