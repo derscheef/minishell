@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:45:15 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:49:53 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	reset_routine(t_main *main)
 	{
 		main->lexer.ntoks = 0;
 		destroy_tokens(main->lexer.tokens);
-		destroy_ast(main->ast);
+		if (main->ast)
+			destroy_ast(main->ast);
 	}
 }
 
@@ -39,11 +40,11 @@ void	routine(t_main *main)
 			exit_routine(main->input, NULL);
 		add_history(main->input);
 		lexer(main->input, ft_strlen(main->input), main);
-		if (main->lexer.ntoks == 0)
-		{
-			reset_routine(main);
-			continue ;
-		}
+		// if (main->lexer.ntoks == 0)
+		// {
+		// 	reset_routine(main);
+		// 	continue ;
+		// }
 		parse(main);
 		execute(main);
 		reset_routine(main);

@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:28:12 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/31 11:32:01 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:46:34 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	open_output_fd(t_internal_cmd *p)
 {
 	int	fd;
 
-	if (p->is_append)
+	if (p->is_double)
 		fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
