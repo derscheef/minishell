@@ -6,13 +6,13 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:01:08 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 22:33:51 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:30:59 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_input(char *delim)
+static char	*get_input(char *delim, t_env_node *env, int exit_code)
 {
 	char	*line;
 	char	*tmp;
@@ -28,6 +28,7 @@ static char	*get_input(char *delim)
 		if (!ft_strcmp(tmp, delim))
 		{
 			free(tmp);
+			line = replace_env_var(line, env, exit_code);
 			return (line);
 		}
 		tmp2 = ft_strjoin(tmp, "\n");
@@ -46,7 +47,7 @@ bool	execute_heredoc(t_cmd *p)
 
 	if (pipe(fd) == -1)
 		return (perror("Error: couldn't create pipe in heredoc"), true);
-	input = get_input(p->node->data);
+	input = get_input(p->node->data, p->env_node, *p->exit_code);
 	write(fd[1], input, ft_strlen(input));
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
