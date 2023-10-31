@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:40:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 20:53:48 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:41:33 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	remove_env_node(t_env_node **head, char *key)
 	curr = *head;
 	while (curr)
 	{
-		if (!ft_strncmp(curr->key, key, ft_strlen(key)))
+		if (!ft_strncmp(curr->key, key, ft_strlen(key))
+			|| !ft_strncmp(curr->value, key, ft_strlen(key)))
 		{
 			if (prev)
 				prev->next = curr->next;
