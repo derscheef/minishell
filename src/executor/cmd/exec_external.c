@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 18:24:31 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:26:30 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,16 @@ bool	execute_external(t_internal_cmd *p)
 		stdout_fd = dup(STDOUT_FILENO);
 		if (p->redirect_in)
 		{
-			fd = open(p->redirect_in, O_RDONLY);
+			if (p->is_double)
+				fd = open("/dev/stdin", O_RDONLY);
+			else
+				fd = open(p->redirect_in, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
 			close(fd);
 		}
 		else if (p->redirect_out)
 		{
-			if (p->is_append)
+			if (p->is_double)
 				fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			else
 				fd = open(p->redirect_out, O_WRONLY | O_CREAT | O_TRUNC, 0644);

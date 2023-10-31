@@ -16,7 +16,7 @@ states/general.c states/quote.c
 PARSER_DIR = parser
 PARSER_FILES = main.c destroy.c \
 job/main.c job/job1.c \
-cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/cmd3.c cmd/simple_cmd.c \
+cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/cmd3.c cmd/cmd4.c cmd/simple_cmd.c \
 tokenlist/main.c
 
 ROUTINE_DIR = routine
@@ -35,6 +35,7 @@ env/replace_env_var.c env/get_env_var.c \
 EXECUTOR_DIR = executor
 EXECUTOR_FILES = main.c cmd.c fds.c job.c pipe.c \
 cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
+heredoc/main.c \
 
 BUILTINS_DIR = builtins
 BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c unset.c cd.c

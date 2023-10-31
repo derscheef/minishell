@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:31:38 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:44:59 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_cmd
 	char		*redirect_in;
 	char		*redirect_out;
 	int			*exit_code;
-	bool		is_append;
+	bool		is_double;
 }				t_cmd;
 
 typedef struct s_internal_cmd
@@ -48,7 +48,7 @@ typedef struct s_internal_cmd
 	char		*redirect_in;
 	char		*redirect_out;
 	int			*exit_code;
-	bool		is_append;
+	bool		is_double;
 }				t_internal_cmd;
 
 typedef struct s_executor
@@ -64,6 +64,7 @@ void			execute_job(t_executor *p);
 void			execute_pipe(t_executor *p);
 void			execute_command(t_cmd p);
 void			execute_simple_command(t_cmd p);
+bool			execute_heredoc(t_cmd *p);
 
 // Actual execution
 bool			execute_internal_command(t_internal_cmd *p);
