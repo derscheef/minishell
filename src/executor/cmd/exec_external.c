@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 16:52:42 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/10/31 18:45:26 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ bool	execute_external(t_internal_cmd *p)
 	int		stdout_fd;
 	int		fd;
 	char	*path;
+	int		status;
 
+	status = 0;
 	path = get_bin_path(p->env_node, p->av[0]);
 	if (!path)
 		path = ft_strdup(p->av[0]);
@@ -140,7 +142,13 @@ bool	execute_external(t_internal_cmd *p)
 	free(path);
 	if (pid < 0)
 		return (perror("fork"), true);
-	while (waitpid(pid, NULL, 0) <= 0)
-		;
+	while ((status = waitpid(pid, NULL, 0)) <= 0)
+	{
+		if (status == -1 && errno != EINTR)
+		{
+			perror("waitpid");
+			break ;
+		}
+	}
 	return (false);
 }
