@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:48:25 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 14:23:15 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:03:44 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ bool	execute(t_main *main)
 	program.env_node = main->env_list;
 	program.node = main->ast;
 	program.exit_code = &main->exit_code;
+	program.main = main;
 	execute_job(&program);
 	free_env(program.env);
 	return (false);

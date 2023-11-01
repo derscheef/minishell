@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 11:44:59 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:02:03 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <dirent.h>
 # include <fcntl.h>
 # include <stdbool.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_cmd
 {
@@ -35,6 +35,7 @@ typedef struct s_cmd
 	char		*redirect_out;
 	int			*exit_code;
 	bool		is_double;
+	t_main		*main;
 }				t_cmd;
 
 typedef struct s_internal_cmd
@@ -51,6 +52,7 @@ typedef struct s_internal_cmd
 	char		*redirect_out;
 	int			*exit_code;
 	bool		is_double;
+	t_main		*main;
 }				t_internal_cmd;
 
 typedef struct s_executor
@@ -59,6 +61,7 @@ typedef struct s_executor
 	char		**env;
 	t_env_node	*env_node;
 	int			*exit_code;
+	t_main		*main;
 }				t_executor;
 
 bool			execute(t_main *p);

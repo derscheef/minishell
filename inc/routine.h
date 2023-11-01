@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:23 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/30 22:16:58 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:05:05 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # include <stdlib.h>
 
 void	routine(t_main *main);
-void	exit_routine(char *exit_code_str, t_internal_cmd *p);
+void	exit_routine(t_main *p);
 
 #endif
