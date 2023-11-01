@@ -36,6 +36,14 @@ static bool	is_builtin(char *input)
 
 bool	execute_internal_command(t_internal_cmd *p)
 {
+	size_t i = 0;
+
+	while(i < p->ac)
+	{
+
+		p->av[i] = replace_env_var(p->av[i], p->env_node, *p->exit_code);
+		i++;
+	}
 	if (is_builtin(p->av[0]))
 		execute_builtin(p);
 	else
