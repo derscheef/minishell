@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 18:45:26 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 16:36:58 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,17 @@ static char	*get_bin_path(t_env_node *env, char *command)
 	return (free_str_arr(paths), found_path);
 }
 
+void	set_to_normal(void)
+{
+	struct sigaction	sa_default;
+
+	sa_default.sa_handler = SIG_DFL;
+	sigemptyset(&sa_default.sa_mask);
+	sa_default.sa_flags = 0;
+	sigaction(SIGINT, &sa_default, NULL);
+	sigaction(SIGQUIT, &sa_default, NULL);
+}
+
 bool	execute_external(t_internal_cmd *p)
 {
 	pid_t	pid;
@@ -98,6 +109,7 @@ bool	execute_external(t_internal_cmd *p)
 	pid = fork();
 	if (pid == 0)
 	{
+		set_to_normal();
 		stdout_fd = dup(STDOUT_FILENO);
 		if (p->redirect_in)
 		{
@@ -136,22 +148,14 @@ bool	execute_external(t_internal_cmd *p)
 			}
 			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
-
 			exit(*p->exit_code);
 		}
 	}
 	free(path);
 	if (pid < 0)
-	{
-
 		return (perror("fork"), true);
-	}
-
-	int status;
 	while (waitpid(pid, &status, 0) <= 0)
-	{
-
-	}
+		;
 	*p->exit_code = WEXITSTATUS(status);
 	// if (p->exit_code != 255)
 	// 	exit_routine(NULL, p);
