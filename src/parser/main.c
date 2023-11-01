@@ -40,7 +40,7 @@ bool	parse(t_main *main)
 
 	if (init_parse_program(&p, main))
 		return (true);
-	if (!p.cur_token || !p.ast || main->lexer.ntoks == 0)
+	if (!p.cur_token || main->lexer.ntoks == 0)
 		return (true);
 	main->ast = parse_job(&p);
 	return (false);
