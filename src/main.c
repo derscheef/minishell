@@ -16,8 +16,9 @@ int	main(int argc, char **argv, char **env)
 {
 	t_main	main;
 
-	if (argc && argv)
-		;
+	(void)argc;
+	(void)argv;
+	
 	main.exit_code = 0;
 	env_init(&main, env);
 	handle_signals();

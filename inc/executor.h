@@ -19,6 +19,8 @@
 # include <dirent.h>
 # include <fcntl.h>
 # include <stdbool.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 typedef struct s_cmd
 {
