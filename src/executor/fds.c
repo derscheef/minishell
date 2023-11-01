@@ -43,9 +43,17 @@ int	handle_fd(t_internal_cmd *p)
 	else if (p->redirect_out)
 		fd = open_output_fd(p);
 	if (p->is_stdin)
+	{
+
 		dup2(p->fd_read, STDIN_FILENO);
+		fd = p->fd_read;
+	}
 	if (p->is_stdout)
+	{
+
 		dup2(p->fd_write, STDOUT_FILENO);
+		fd = p->fd_write;
+	}
 	return (fd);
 }
 

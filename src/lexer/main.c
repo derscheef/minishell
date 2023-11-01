@@ -82,9 +82,11 @@ bool	lexer(char *str, size_t size, t_main *main)
 	{
 		if (p.token->type == TOKEN)
 		{
-			// main->tmp = remove_quotes(p.token->data);
-			// free(p.token->data);
-			// p.token->data = main->tmp;
+			p.token->data = replace_env_var(p.token->data, main->env_list,
+					main->exit_code);
+			main->tmp = remove_quotes(p.token->data);
+			free(p.token->data);
+			p.token->data = main->tmp;
 			main->lexer.ntoks++;
 		}
 		else if ((p.token->type == CHAR_GREATER

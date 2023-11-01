@@ -134,13 +134,24 @@ bool	execute_external(t_internal_cmd *p)
 			}
 			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
-			return (true);
+
+			exit(*p->exit_code);
 		}
 	}
 	free(path);
 	if (pid < 0)
+	{
+
 		return (perror("fork"), true);
-	while (waitpid(pid, NULL, 0) <= 0)
-		;
+	}
+	
+	int status;
+	while (waitpid(pid, &status, 0) <= 0)
+	{
+
+	}
+	*p->exit_code = WEXITSTATUS(status);
+	// if (p->exit_code != 255)
+	// 	exit_routine(NULL, p);
 	return (false);
 }
