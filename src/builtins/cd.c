@@ -32,7 +32,10 @@ int	exec_cd(t_internal_cmd *cmd, char *input)
 	if (cmd->ac > 2)
 		return (0);
 	full_path = NULL;
-	input += 3;
+	if (ft_strlen(input) < 3)
+		input += ft_strlen(input);
+	else 
+		input += 3;
 	if (!input || !*input)
 		input = getenv("HOME");
 	else if (*input != '/')

@@ -36,6 +36,8 @@ static bool	is_builtin(char *input)
 
 bool	execute_internal_command(t_internal_cmd *p)
 {
+
+
 	if (is_builtin(p->av[0]))
 		execute_builtin(p);
 	else

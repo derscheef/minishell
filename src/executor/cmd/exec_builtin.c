@@ -15,6 +15,7 @@
 char	*convert_input(t_internal_cmd *p)
 {
 	char	*input;
+	char	*temp;
 	int		i;
 
 	i = 0;
@@ -24,9 +25,17 @@ char	*convert_input(t_internal_cmd *p)
 		if (i == 0)
 			input = ft_strdup(p->av[i]);
 		else
-			input = ft_strjoin(input, p->av[i]);
+		{
+			temp = ft_strjoin(input, p->av[i]);
+			free(input);
+			input = temp;
+		}
 		if (p->av[i + 1])
-			input = ft_strjoin(input, " ");
+		{
+			temp = ft_strjoin(input, " ");
+			free(input);
+			input = temp;
+		}
 		i++;
 	}
 	return (input);
