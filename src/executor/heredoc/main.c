@@ -71,27 +71,36 @@ int	handle_fd_heredoc(t_cmd *p)
 	else if (p->redirect_out)
 		fd = open_output_fd_heredoc(p);
 	if (p->is_stdin)
+	{
+
 		dup2(p->fd_read, STDIN_FILENO);
+		fd = p->fd_read;
+	}
 	if (p->is_stdout)
+	{
+
 		dup2(p->fd_write, STDOUT_FILENO);
+		fd = p->fd_write;
+	}
 	return (fd);
 }
 
 bool	execute_heredoc(t_cmd *p)
 {
-	char	*input;
-	int		fd[2];
-	int		original_stdout;
-	int		original_stdin;
+    char	*input;
+    int		fd[2];
+    int		original_stdout;
+    int		original_stdin;
 
-	original_stdout = dup(STDOUT_FILENO);
-	original_stdin = dup(STDIN_FILENO);
-	if (pipe(fd) == -1)
-		return (perror("Error: couldn't create pipe in heredoc"), true);
-	input = get_input(p->node->data, p->env_node, *p->exit_code);
-	fd[0] = handle_fd_heredoc(p);
-	write(fd[1], input, ft_strlen(input));
-	free(input);
-	restore_fds(original_stdout, original_stdin);
-	return (false);
+    original_stdout = dup(STDOUT_FILENO);
+    original_stdin = dup(STDIN_FILENO);
+    if (pipe(fd) == -1)
+        return (perror("Error: couldn't create pipe in heredoc"), true);
+    input = get_input(p->node->data, p->env_node, *p->exit_code);
+    fd[1] = handle_fd_heredoc(p);
+    write(fd[1], input, ft_strlen(input));
+    free(input);
+    close(fd[1]); // Close write end of the pipe
+    restore_fds(original_stdout, original_stdin);
+    return (false);
 }
