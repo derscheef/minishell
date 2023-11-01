@@ -15,6 +15,8 @@
 int	execute_echo(t_internal_cmd *p, int fd)
 {
 	size_t	i;
+	bool is_nl;
+	is_nl = true;
 
 	if (!p || fd < 0)
 	{
@@ -23,11 +25,18 @@ int	execute_echo(t_internal_cmd *p, int fd)
 	i = 1;
 	while (i < p->ac)
 	{
+		if (i == 1 && ft_strcmp(p->av[i], "-n") == 0)
+		{
+			is_nl = false;
+			i++;
+			continue ;
+		}
 		write(fd, p->av[i], strlen(p->av[i]));
 		if (i < p->ac - 1)
 			write(fd, " ", 1);
 		i++;
 	}
+	if (is_nl)
 	write(fd, "\n", 1);
 	return (0);
 }
