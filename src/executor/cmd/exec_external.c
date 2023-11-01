@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 18:45:26 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 15:30:49 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ bool	execute_external(t_internal_cmd *p)
 	int		fd;
 	char	*path;
 	int		status;
+	int		status;
 
 	status = 0;
 	path = get_bin_path(p->env_node, p->av[0]);
@@ -136,19 +137,19 @@ bool	execute_external(t_internal_cmd *p)
 			}
 			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
-			return (true);
+			exit(*p->exit_code);
 		}
 	}
 	free(path);
 	if (pid < 0)
-		return (perror("fork"), true);
-	while ((status = waitpid(pid, NULL, 0)) <= 0)
 	{
-		if (status == -1 && errno != EINTR)
-		{
-			perror("waitpid");
-			break ;
-		}
+		return (perror("fork"), true);
 	}
+	while (waitpid(pid, &status, 0) <= 0)
+	{
+	}
+	*p->exit_code = WEXITSTATUS(status);
+	// if (p->exit_code != 255)
+	// 	exit_routine(NULL, p);
 	return (false);
 }

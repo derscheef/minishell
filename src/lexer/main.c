@@ -47,7 +47,7 @@ static int	initial_checks(char *str, size_t size, t_lexer *lexer)
 static bool	tokenize_input(t_lexer_program *p)
 {
 	bool	error;
-
+	p->c = p->str[0];
 	while (p->c)
 	{
 		p->c = p->str[p->i];

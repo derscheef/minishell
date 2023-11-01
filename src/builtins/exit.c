@@ -24,7 +24,7 @@ void	exit_routine(char *exit_code_str, t_internal_cmd *p)
 	if (p)
 		exit_code_str = p->av[1];
 	if (!exit_code_str)
-		return (exit(0));
+		exit_code_str = "1";
 	exit_code = ft_atoi(exit_code_str);
 	while (*exit_code_str)
 	{
