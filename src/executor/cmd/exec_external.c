@@ -6,13 +6,11 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 15:19:28 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:13:35 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO: implement signal handling
 
 static void	free_str_arr(char **arr)
 {
@@ -153,9 +151,12 @@ bool	execute_external(t_internal_cmd *p)
 	}
 	free(path);
 	if (pid < 0)
+	{
 		return (perror("fork"), true);
+	}
 	while (waitpid(pid, &status, 0) <= 0)
-		;
+	{
+	}
 	*p->exit_code = WEXITSTATUS(status);
 	// if (p->exit_code != 255)
 	// 	exit_builtin(NULL, p);

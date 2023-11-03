@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:59 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/25 12:42:37 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:04:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
+
+// TODO: CTRL + D segfaults, pointer being freed twice
 
 void	configure_terminal(void)
 {
