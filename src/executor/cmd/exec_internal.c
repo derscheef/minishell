@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_internal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:14:12 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/28 19:45:08 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/03 15:19:17 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static bool	is_builtin(char *input)
 
 bool	execute_internal_command(t_internal_cmd *p)
 {
-
-
 	if (is_builtin(p->av[0]))
 		execute_builtin(p);
 	else

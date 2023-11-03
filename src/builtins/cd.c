@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/31 16:49:39 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 15:18:10 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	exec_cd(t_internal_cmd *cmd, char *input)
 	full_path = NULL;
 	if (ft_strlen(input) < 3)
 		input += ft_strlen(input);
-	else 
+	else
 		input += 3;
 	if (!input || !*input)
 		input = getenv("HOME");

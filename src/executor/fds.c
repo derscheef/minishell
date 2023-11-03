@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:28:12 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/31 11:46:34 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 15:19:04 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ int	handle_fd(t_internal_cmd *p)
 		fd = open_output_fd(p);
 	if (p->is_stdin)
 	{
-
 		dup2(p->fd_read, STDIN_FILENO);
 		fd = p->fd_read;
 	}
 	if (p->is_stdout)
 	{
-
 		dup2(p->fd_write, STDOUT_FILENO);
 		fd = p->fd_write;
 	}
