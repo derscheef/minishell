@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/01 17:06:32 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:00:28 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ char	*convert_input(t_internal_cmd *p)
 	return (input);
 }
 
+// TODO: this input free is a workaround
+// any exit inside the builtin command will still result in a memory leak
+// this is because the input is not freed on exit
+// Option 1: rewrite the builtin commands to not use input
+// Option 2: free input on exit
+
 void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 {
 	if (ft_strncmp(input, "clear", 5) == 0)
@@ -59,6 +65,7 @@ void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 		*p->exit_code = exec_unset(input, p);
 	else if (ft_strncmp(input, "env", 3) == 0)
 		*p->exit_code = print_env(p, fd);
+	free(input);
 }
 
 void	execute_builtin(t_internal_cmd *p)

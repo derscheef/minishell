@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:19:06 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/27 10:58:46 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:54:14 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO: Switch to exit_routine instead of exit
 
 int	clear_term(void)
 {

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 16:52:42 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:01:27 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO: implement signal handling
 
 static void	free_str_arr(char **arr)
 {
@@ -89,6 +87,7 @@ bool	execute_external(t_internal_cmd *p)
 	int		stdout_fd;
 	int		fd;
 	char	*path;
+	int		status;
 
 	path = get_bin_path(p->env_node, p->av[0]);
 	if (!path)
@@ -134,21 +133,16 @@ bool	execute_external(t_internal_cmd *p)
 			}
 			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
-
 			exit(*p->exit_code);
 		}
 	}
 	free(path);
 	if (pid < 0)
 	{
-
 		return (perror("fork"), true);
 	}
-	
-	int status;
 	while (waitpid(pid, &status, 0) <= 0)
 	{
-
 	}
 	*p->exit_code = WEXITSTATUS(status);
 	// if (p->exit_code != 255)
