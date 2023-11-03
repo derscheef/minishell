@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:03:46 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/01 17:07:51 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:19:02 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exit_builtin(char *exit_code_str, t_internal_cmd *p, t_main *main)
 	if (p && p->ac > 2)
 	{
 		ft_putendl_fd(" too many arguments", 2);
-		exit_routine(main);
+		return (exit_routine(main));
 	}
 	if (p)
 		exit_code_str = p->av[1];
