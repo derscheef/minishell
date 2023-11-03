@@ -158,6 +158,6 @@ bool	execute_external(t_internal_cmd *p)
 		;
 	*p->exit_code = WEXITSTATUS(status);
 	// if (p->exit_code != 255)
-	// 	exit_routine(NULL, p);
+	// 	exit_builtin(NULL, p);
 	return (false);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 22:17:36 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:03:09 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ static void	modify_or_add_env(t_internal_cmd *main, char *key, char *value)
 	}
 	new_node = (t_env_node *)ft_calloc(1, sizeof(t_env_node));
 	if (!new_node)
-	{
-		perror("Error allocating memory for new env node");
-		exit_routine("1", NULL);
-	}
+		return ;
 	new_node->key = ft_strdup(key);
 	new_node->value = ft_strdup(value);
 	env_listadd_back(&(main->env_node), new_node);

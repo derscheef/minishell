@@ -20,7 +20,7 @@ cmd/main.c cmd/cmd1.c cmd/cmd2.c cmd/cmd3.c cmd/cmd4.c cmd/simple_cmd.c \
 tokenlist/main.c
 
 ROUTINE_DIR = routine
-ROUTINE_FILES = main.c
+ROUTINE_FILES = main.c exit.c
 
 SIGNALS_DIR = signals
 SIGNALS_FILES = main.c
@@ -41,7 +41,7 @@ BUILTINS_DIR = builtins
 BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c unset.c cd.c
 
 ENV_DIR = env
-ENV_FILES = init.c print.c main.c
+ENV_FILES = init.c print.c main.c destroy.c
 
 SRC_DIR = src
 SRC_FILES = main.c \
