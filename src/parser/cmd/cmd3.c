@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:25:01 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/01 17:26:51 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:13:50 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_node	*parse_cmd3(t_parse_program *p)
 	char	*arg;
 	t_node	*return_node;
 
+	arg = NULL;
 	scmd_node = parse_simple_cmd(p);
 	if (!scmd_node)
 		return (NULL);

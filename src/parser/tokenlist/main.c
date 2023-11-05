@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:45:54 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 17:31:49 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:14:19 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_node	*get_node(t_parse_program *p)
 	t_node	*return_node;
 	char	*arg;
 
+	arg = NULL;
 	if (consume_token(TOKEN, &arg, p))
 		return (NULL);
 	tokenlist_node = parse_tokenlist(p);
