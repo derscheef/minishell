@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 17:07:01 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/06 20:44:50 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	initial_checks(char *str, size_t size, t_lexer *lexer)
 static bool	tokenize_input(t_lexer_program *p)
 {
 	bool	error;
+
 	p->c = p->str[0];
 	while (p->c)
 	{
