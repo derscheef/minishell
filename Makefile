@@ -67,6 +67,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
+	@echo "$(CC) $(CFLAGS) -c $< -o $@  -I $(INC_DIR) -I /opt/homebrew/opt/readline/include"
 	@$(CC) $(CFLAGS) -c $< -o $@  -I $(INC_DIR) -I /opt/homebrew/opt/readline/include
 
 $(NAME): $(OBJ_FILES)
