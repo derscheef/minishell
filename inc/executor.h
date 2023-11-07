@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/01 17:02:03 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/06 23:31:55 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			execute_simple_command(t_cmd p);
 bool			execute_heredoc(t_cmd *p);
 
 // Actual execution
-bool			execute_internal_command(t_internal_cmd *p);
+bool			check_command_type(t_internal_cmd *p);
 bool			execute_external(t_internal_cmd *p);
 void			execute_builtin(t_internal_cmd *p);
 

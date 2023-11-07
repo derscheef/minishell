@@ -3,6 +3,7 @@
   "editor.formatOnPaste": true,
 "editor.formatOnSave": true,
 "files.associations": {
-	"signals.h": "c"
+	"signals.h": "c",
+	"builtins.h": "c"
 }
 }

@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 18:13:35 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/07 14:17:31 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ static char	*get_bin_path(t_env_node *env, char *command)
 	return (free_str_arr(paths), found_path);
 }
 
-void	set_to_normal(void)
+void	set_to_ignore(void)
 {
 	struct sigaction	sa_default;
 
-	sa_default.sa_handler = SIG_DFL;
+	sa_default.sa_handler = SIG_IGN;
 	sigemptyset(&sa_default.sa_mask);
 	sa_default.sa_flags = 0;
 	sigaction(SIGINT, &sa_default, NULL);
@@ -104,10 +104,10 @@ bool	execute_external(t_internal_cmd *p)
 	path = get_bin_path(p->env_node, p->av[0]);
 	if (!path)
 		path = ft_strdup(p->av[0]);
-	pid = fork();
-	if (pid == 0)
+	set_to_ignore();
+	if ((pid = fork()) == 0)
 	{
-		set_to_normal();
+		handle_signals();
 		stdout_fd = dup(STDOUT_FILENO);
 		if (p->redirect_in)
 		{
@@ -151,12 +151,11 @@ bool	execute_external(t_internal_cmd *p)
 	}
 	free(path);
 	if (pid < 0)
-	{
 		return (perror("fork"), true);
-	}
 	while (waitpid(pid, &status, 0) <= 0)
 	{
 	}
+	handle_signals();
 	*p->exit_code = WEXITSTATUS(status);
 	// if (p->exit_code != 255)
 	// 	exit_builtin(NULL, p);

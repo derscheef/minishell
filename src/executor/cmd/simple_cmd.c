@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:06:16 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 17:50:58 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/06 23:31:55 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	execute_simple_command(t_cmd p)
 		p.is_double, p.main};
 	if (init_arguments(&p, cmd))
 		return ;
-	execute_internal_command(cmd);
+	check_command_type(cmd);
 	destroy_arguments(cmd);
 }

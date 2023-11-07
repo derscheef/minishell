@@ -34,7 +34,7 @@ env/replace_env_var.c env/get_env_var.c \
 
 EXECUTOR_DIR = executor
 EXECUTOR_FILES = main.c cmd.c fds.c job.c pipe.c \
-cmd/exec_external.c cmd/exec_internal.c cmd/exec_builtin.c cmd/simple_cmd.c \
+cmd/exec_external.c cmd/check_command_type.c cmd/exec_builtin.c cmd/simple_cmd.c \
 heredoc/main.c \
 
 BUILTINS_DIR = builtins
