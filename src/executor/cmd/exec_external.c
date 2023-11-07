@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/07 14:17:31 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/07 14:48:36 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ bool	execute_external(t_internal_cmd *p)
 			switch (errno)
 			{
 			case EACCES:
-				*p->exit_code = 126; // Command invoked cannot execute
+				*p->exit_code = 126;
 				perror("Permission denied");
 				break ;
-			case ENOENT: /* No such file or directory */
+			case ENOENT:
 			default:
-				*p->exit_code = 127; // Command not found
+				*p->exit_code = 127;
 				perror("command not found");
 			}
 			dup2(stdout_fd, STDOUT_FILENO);

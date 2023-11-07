@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:01:08 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 15:19:44 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/07 14:48:59 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int	handle_fd_heredoc(t_cmd *p)
 
 bool	execute_heredoc(t_cmd *p)
 {
-	char *input;
-	int fd[2];
-	int original_stdout;
-	int original_stdin;
+	char	*input;
+	int		fd[2];
+	int		original_stdout;
+	int		original_stdin;
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
@@ -98,7 +98,7 @@ bool	execute_heredoc(t_cmd *p)
 	fd[1] = handle_fd_heredoc(p);
 	write(fd[1], input, ft_strlen(input));
 	free(input);
-	close(fd[1]); // Close write end of the pipe
+	close(fd[1]);
 	restore_fds(original_stdout, original_stdin);
 	return (false);
 }
