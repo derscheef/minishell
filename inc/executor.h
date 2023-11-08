@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:37:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:44:01 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			execute_simple_command(t_cmd p);
 bool			execute_heredoc(t_cmd *p);
 
 // Actual execution
-bool			execute_internal_command(t_internal_cmd *p);
+bool			check_command_type(t_internal_cmd *p);
 bool			execute_external(t_internal_cmd *p);
 void			execute_builtin(t_internal_cmd *p);
 
@@ -90,5 +90,6 @@ void			handle_redirect_out(t_internal_cmd *p, int *fd);
 void			handle_stdin_stdout(t_internal_cmd *p);
 void			execute_bin(t_internal_cmd *p, char *path, int stdout_fd);
 void			wait_for_child(t_internal_cmd *p, pid_t pid, int *status);
+void			set_to_ignore(void);
 
 #endif

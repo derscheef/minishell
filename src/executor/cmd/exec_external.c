@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:35:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:43:38 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ bool	execute_external(t_internal_cmd *p)
 	pid = fork();
 	if (pid == 0)
 	{
+		handle_signals();
 		stdout_fd = dup(STDOUT_FILENO);
 		handle_redirect_in(p, &fd);
 		handle_redirect_out(p, &fd);
@@ -78,9 +79,7 @@ bool	execute_external(t_internal_cmd *p)
 	}
 	free(path);
 	if (pid < 0)
-	{
 		return (perror("fork"), true);
-	}
 	wait_for_child(p, pid, &status);
 	return (false);
 }

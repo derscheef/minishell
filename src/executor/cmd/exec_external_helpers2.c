@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:32:56 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:32:59 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:44:09 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,15 @@ void	wait_for_child(t_internal_cmd *p, pid_t pid, int *status)
 	while (waitpid(pid, status, 0) <= 0)
 		;
 	*p->exit_code = WEXITSTATUS(*status);
+}
+
+void	set_to_ignore(void)
+{
+	struct sigaction	sa_default;
+
+	sa_default.sa_handler = SIG_IGN;
+	sigemptyset(&sa_default.sa_mask);
+	sa_default.sa_flags = 0;
+	sigaction(SIGINT, &sa_default, NULL);
+	sigaction(SIGQUIT, &sa_default, NULL);
 }
