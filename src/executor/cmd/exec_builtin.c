@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 18:00:28 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:03:00 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,21 @@ void	execute_builtin(t_internal_cmd *p)
 	char	*input;
 	int		original_stdout;
 	int		original_stdin;
+	int		err_stdin;
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
 	input = convert_input(p);
 	fd = handle_fd(p);
-	restore_fds(original_stdout, original_stdin);
-	execute_cmd_based_on_input(input, p, fd);
+	if (fd == -1)
+	{
+		ft_putstr_fd(" No such file or directory\n", STDERR_FILENO);
+		*p->exit_code = 1;
+		restore_fds(original_stdout, original_stdin);
+	}
+	else
+	{
+		restore_fds(original_stdout, original_stdin);
+		execute_cmd_based_on_input(input, p, fd);
+	}
 }
