@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:02:28 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/01 17:02:37 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:18:58 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	execute_pipe(t_executor *p)
 	int		read_pipe;
 	int		write_pipe;
 
-	pipe(fd);
-	read_pipe = fd[0];
-	write_pipe = fd[1];
+	init_pipe(fd, &read_pipe, &write_pipe);
 	execute_command((t_cmd){p->node->left, p->env, p->env_node, false, true,
 		read_pipe, write_pipe, NULL, NULL, p->exit_code, false, p->main});
 	node = p->node->right;

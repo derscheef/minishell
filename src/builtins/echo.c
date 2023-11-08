@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:48:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 19:59:30 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:20:13 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	execute_echo(t_internal_cmd *p, int fd)
 {
 	size_t	i;
-	bool is_nl;
-	is_nl = true;
+	bool	is_nl;
 
+	is_nl = true;
 	if (!p || fd < 0)
 	{
 		return (-1);
@@ -37,6 +37,6 @@ int	execute_echo(t_internal_cmd *p, int fd)
 		i++;
 	}
 	if (is_nl)
-	write(fd, "\n", 1);
+		write(fd, "\n", 1);
 	return (0);
 }

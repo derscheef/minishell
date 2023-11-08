@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:01:08 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 15:09:29 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:20:47 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ int	handle_fd_heredoc(t_cmd *p)
 		fd = open_output_fd_heredoc(p);
 	if (p->is_stdin)
 	{
-
 		dup2(p->fd_read, STDIN_FILENO);
 		fd = p->fd_read;
 	}
 	if (p->is_stdout)
 	{
-
 		dup2(p->fd_write, STDOUT_FILENO);
 		fd = p->fd_write;
 	}
@@ -87,20 +85,20 @@ int	handle_fd_heredoc(t_cmd *p)
 
 bool	execute_heredoc(t_cmd *p)
 {
-    char	*input;
-    int		fd[2];
-    int		original_stdout;
-    int		original_stdin;
+	char	*input;
+	int		fd[2];
+	int		original_stdout;
+	int		original_stdin;
 
-    original_stdout = dup(STDOUT_FILENO);
-    original_stdin = dup(STDIN_FILENO);
-    if (pipe(fd) == -1)
-        return (perror("Error: couldn't create pipe in heredoc"), true);
-    input = get_input(p->node->data, p->env_node, *p->exit_code);
-    fd[1] = handle_fd_heredoc(p);
-    write(fd[1], input, ft_strlen(input));
-    free(input);
-    close(fd[1]); // Close write end of the pipe
-    restore_fds(original_stdout, original_stdin);
-    return (false);
+	original_stdout = dup(STDOUT_FILENO);
+	original_stdin = dup(STDIN_FILENO);
+	if (pipe(fd) == -1)
+		return (perror("Error: couldn't create pipe in heredoc"), true);
+	input = get_input(p->node->data, p->env_node, *p->exit_code);
+	fd[1] = handle_fd_heredoc(p);
+	write(fd[1], input, ft_strlen(input));
+	free(input);
+	close(fd[1]);
+	restore_fds(original_stdout, original_stdin);
+	return (false);
 }

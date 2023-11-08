@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/08 15:58:21 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:20:03 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	exec_cd(t_internal_cmd *cmd, char *input)
 	char	*full_path;
 
 	if (cmd->ac > 2)
-	{
-		ft_putstr_fd(" too many arguments\n", STDERR_FILENO);
-		return (1);
-	}
+		return (ft_putstr_fd(" too many arguments\n", STDERR_FILENO), 1);
 	full_path = NULL;
 	if (ft_strlen(input) < 3)
 		input += ft_strlen(input);

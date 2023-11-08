@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 15:49:38 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:23:59 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,24 +121,24 @@ bool	execute_external(t_internal_cmd *p)
 		if (execve(path, p->av, p->env) == -1)
 		{
 			dup2(stdout_fd, STDOUT_FILENO);
-			switch (errno)
+			if (errno == EACCES)
 			{
-			case EACCES:
-				*p->exit_code = 126; // Command invoked cannot execute
+				*p->exit_code = 126;
 				ft_putstr_fd("Permission denied\n", STDERR_FILENO);
-				break ;
-			case ENOENT:
-				*p->exit_code = 127; // Command not found
-				ft_putstr_fd(" No such file or directory\n", STDERR_FILENO);
-				break ;
-			default:
-				*p->exit_code = 127; // Command not found
-				ft_putstr_fd(" command not found\n", STDERR_FILENO);
-				break ;
 			}
-			free(path);
-			exit(*p->exit_code);
+			else if (errno == ENOENT)
+			{
+				*p->exit_code = 127;
+				ft_putstr_fd("No such file or directory\n", STDERR_FILENO);
+			}
+			else
+			{
+				*p->exit_code = 127;
+				ft_putstr_fd("command not found\n", STDERR_FILENO);
+			}
 		}
+		free(path);
+		exit(*p->exit_code);
 	}
 	free(path);
 	if (pid < 0)
@@ -146,10 +146,7 @@ bool	execute_external(t_internal_cmd *p)
 		return (perror("fork"), true);
 	}
 	while (waitpid(pid, &status, 0) <= 0)
-	{
-	}
+		;
 	*p->exit_code = WEXITSTATUS(status);
-	// if (p->exit_code != 255)
-	// 	exit_builtin(NULL, p);
 	return (false);
 }
