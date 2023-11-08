@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:01:25 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 11:31:31 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:47:56 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	destroy_node(t_node *node)
 {
 	if (!node)
 		return ;
-	if (node->type == NODE_DATA || node->type == NODE_CMDPATH
-		|| node->type == NODE_ARGUMENT)
+	if (node->data)
 		free(node->data);
 	destroy_node(node->left);
 	destroy_node(node->right);

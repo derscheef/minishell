@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:18:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 14:24:24 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:51:49 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list,
 		int exit_code)
 {
 	char	*tmp;
+	char	*str_new;
 
 	if (ft_strcmp(env->var + 1, "?") == 0)
 		tmp = ft_itoa(exit_code);
@@ -68,11 +69,12 @@ static char	*rebuild_string(char *str, t_env_var *env, t_env_node *env_list,
 	else
 		env->var = ft_strdup("");
 	free(str);
-	str = ft_strjoin(env->start, env->var);
+	str_new = ft_strjoin(env->start, env->var);
 	free(env->start);
 	free(env->var);
-	str = ft_strjoin(str, env->end);
+	str = ft_strjoin(str_new, env->end);
 	free(env->end);
+	free(str_new);
 	return (str);
 }
 
