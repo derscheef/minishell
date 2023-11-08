@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:51:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/01 17:02:03 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:37:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,14 @@ int				open_input_fd(t_internal_cmd *p);
 int				open_output_fd(t_internal_cmd *p);
 int				handle_fd(t_internal_cmd *p);
 void			restore_fds(int original_stdout, int original_stdin);
+
+// External exec helpers
+char			*get_path(t_internal_cmd *p);
+char			*get_bin_path(t_env_node *env, char *command);
+void			handle_redirect_in(t_internal_cmd *p, int *fd);
+void			handle_redirect_out(t_internal_cmd *p, int *fd);
+void			handle_stdin_stdout(t_internal_cmd *p);
+void			execute_bin(t_internal_cmd *p, char *path, int stdout_fd);
+void			wait_for_child(t_internal_cmd *p, pid_t pid, int *status);
 
 #endif
