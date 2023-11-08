@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 15:20:40 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:49:38 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,16 @@ bool	execute_external(t_internal_cmd *p)
 			{
 			case EACCES:
 				*p->exit_code = 126; // Command invoked cannot execute
-				perror("Permission denied");
+				ft_putstr_fd("Permission denied\n", STDERR_FILENO);
 				break ;
-			case ENOENT: /* No such file or directory */
+			case ENOENT:
+				*p->exit_code = 127; // Command not found
+				ft_putstr_fd(" No such file or directory\n", STDERR_FILENO);
+				break ;
 			default:
 				*p->exit_code = 127; // Command not found
-				perror("command not found");
+				ft_putstr_fd(" command not found\n", STDERR_FILENO);
+				break ;
 			}
 			free(path);
 			exit(*p->exit_code);
