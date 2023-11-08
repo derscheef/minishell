@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/03 18:01:27 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:20:40 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ bool	execute_external(t_internal_cmd *p)
 			dup2(p->fd_write, STDOUT_FILENO);
 		if (execve(path, p->av, p->env) == -1)
 		{
+			dup2(stdout_fd, STDOUT_FILENO);
 			switch (errno)
 			{
 			case EACCES:
@@ -131,7 +132,6 @@ bool	execute_external(t_internal_cmd *p)
 				*p->exit_code = 127; // Command not found
 				perror("command not found");
 			}
-			dup2(stdout_fd, STDOUT_FILENO);
 			free(path);
 			exit(*p->exit_code);
 		}
