@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:48:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/08 18:42:00 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:33:44 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	execute_echo(t_internal_cmd *p, int fd)
 	if (!p || fd < 0)
 		return (-1);
 	i = 1;
-	if (i < p->ac && strcmp(p->av[i], "-n") == 0)
-		i++;
 	while (i < p->ac)
 	{
 		if (i == 1 && ft_strcmp(p->av[i], "-n") == 0)
