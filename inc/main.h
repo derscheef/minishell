@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:52:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/01 16:51:47 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:04:32 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_main
 
 	char		*input;
 	char		*tmp;
+	char		*prompt;
 }				t_main;
 
 #endif
