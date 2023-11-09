@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:43:38 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/09 13:27:37 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ bool	execute_external(t_internal_cmd *p)
 	int		status;
 
 	path = get_path(p);
+	set_to_ignore();
 	pid = fork();
 	if (pid == 0)
 	{

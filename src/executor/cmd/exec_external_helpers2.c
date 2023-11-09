@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:32:56 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:44:09 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/09 13:28:35 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	wait_for_child(t_internal_cmd *p, pid_t pid, int *status)
 	while (waitpid(pid, status, 0) <= 0)
 		;
 	*p->exit_code = WEXITSTATUS(*status);
+	handle_signals();
 }
 
 void	set_to_ignore(void)
