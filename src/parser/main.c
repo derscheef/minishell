@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:56:07 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/04 22:11:25 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:24:08 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ bool	consume_token(t_token_type type, char **strbuffer, t_parse_program *p)
 	}
 	if (strbuffer)
 	{
-		free(*strbuffer);
 		*strbuffer = ft_strdup(p->cur_token->data);
 	}
 	p->cur_token = p->cur_token->next;

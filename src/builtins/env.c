@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:38:05 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/10 11:42:11 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:38:15 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int	print_env(t_internal_cmd *main, int fd)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!main)
 		return (1);
 	while (main->env[i])
