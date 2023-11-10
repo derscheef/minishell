@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:03:46 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/08 16:01:01 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:50:35 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exit_builtin(char *exit_code_str, t_internal_cmd *p, t_main *main)
 		if (!ft_isdigit(*exit_code_str) && !(*exit_code_str == '+'
 				|| *exit_code_str == '-'))
 		{
-			main->exit_code = 2;
+			main->exit_code = 255;
 			ft_putendl_fd(" numeric argument required", STDERR_FILENO);
 			break ;
 		}
