@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 18:49:35 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:57:55 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ static bool	check_file(t_node *node, int *exit_code)
 	else if (node->type == NODE_REDIRECT_OUT
 		|| node->type == NODE_REDIRECT_OUT_APPEND)
 	{
-		if (!can_open_file(node->data, W_OK, exit_code))
+		if (access(node->data, W_OK) != 0)
+		{
+			*exit_code = 1;
+			ft_putstr_fd(" Permission denied\n", STDERR_FILENO);
 			return (true);
+		}
 	}
 	return (false);
 }
