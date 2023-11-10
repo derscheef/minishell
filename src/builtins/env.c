@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:38:05 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/30 15:26:43 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:42:11 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 
 int	print_env(t_internal_cmd *main, int fd)
 {
-	t_env_node	*current;
+	int i = 0;
 
 	if (!main)
 		return (1);
-	current = main->env_node;
-	while (current)
+	while (main->env[i])
 	{
-		ft_putstr_fd(current->key, fd);
-		ft_putchar_fd('=', fd);
-		ft_putstr_fd(current->value, fd);
+		ft_putstr_fd(main->env[i], fd);
 		ft_putchar_fd('\n', fd);
-		current = current->next;
+		i++;
 	}
 	return (0);
 }
