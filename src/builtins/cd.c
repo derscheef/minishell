@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/08 18:42:06 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:47:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,17 @@ char	*construct_full_path(const char *current, const char *relative)
 	return (full_path);
 }
 
-int	exec_cd(t_internal_cmd *cmd, char *input)
+int	exec_cd(t_internal_cmd *cmd)
 {
 	char	cwd[4096];
 	char	*full_path;
+	char	*input;
 
-	if (cmd->ac > 2)
-		return (ft_putstr_fd(" too many arguments\n", STDERR_FILENO), 1);
 	full_path = NULL;
-	if (ft_strlen(input) < 3)
-		input += ft_strlen(input);
+	if (cmd->ac < 2)
+		input = NULL;
 	else
-		input += 3;
+		input = cmd->av[1];
 	if (!input || !*input)
 		input = getenv("HOME");
 	else if (*input != '/')

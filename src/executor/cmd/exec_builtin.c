@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 16:03:19 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:48:23 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 	else if (ft_strncmp(input, "pwd", 3) == 0)
 		*p->exit_code = print_pwd(fd);
 	else if (ft_strncmp(input, "cd", 2) == 0)
-		*p->exit_code = exec_cd(p, input);
+		*p->exit_code = exec_cd(p);
 	else if (ft_strncmp(input, "export", 6) == 0)
 		*p->exit_code = exec_export(input, p);
 	else if (ft_strncmp(input, "unset", 5) == 0)

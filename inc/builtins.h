@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:22:03 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/01 17:06:15 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:48:32 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		print_pwd(int fd);
 int		execute_echo(t_internal_cmd *p, int fd);
 int		exec_export(char *input, t_internal_cmd *main);
 int		exec_unset(char *input, t_internal_cmd *main);
-int		exec_cd(t_internal_cmd *cmd, char *input);
+int		exec_cd(t_internal_cmd *cmd);
 void	exit_builtin(char *exit_code_str, t_internal_cmd *p, t_main *main);
 
 #endif
