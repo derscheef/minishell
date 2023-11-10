@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:44:51 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/10/31 17:11:16 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:15:09 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ char				*handle_general(char **str, char **rv, t_state *state);
 char				*handle_dquote(char **str, char **rv, t_state *state);
 char				*handle_quote(char **str, char **rv, t_state *state);
 char				*remove_quotes(char *str);
+void				remove_empty_tokens(t_lexer *lex);
+
 #endif

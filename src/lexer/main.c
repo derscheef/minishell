@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:50:15 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:41:31 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:27:57 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	lexer(char *str, size_t size, t_main *main)
 
 	if (initial_checks(str, size, &main->lexer) || init_lexer_program(str, size,
 			&main->lexer, &p) || tokenize_input(&p))
-		return (1);
+		return (true);
 	p.token = main->lexer.tokens;
 	while (p.token)
 	{

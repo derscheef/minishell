@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:32:56 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/09 13:28:35 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:17:48 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	execute_bin(t_internal_cmd *p, char *path, int stdout_fd)
 		if (errno == EACCES)
 		{
 			*p->exit_code = 126;
-			ft_putstr_fd("Permission denied\n", STDERR_FILENO);
+			ft_putstr_fd(" Permission denied\n", STDERR_FILENO);
 		}
 		else if (errno == ENOENT)
 		{
 			*p->exit_code = 127;
-			ft_putstr_fd("No such file or directory\n", STDERR_FILENO);
+			ft_putstr_fd(" No such file or directory\n", STDERR_FILENO);
 		}
 		else
 		{
 			*p->exit_code = 127;
-			ft_putstr_fd("command not found\n", STDERR_FILENO);
+			ft_putstr_fd(" command not found\n", STDERR_FILENO);
 		}
 	}
 }
