@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/09 13:27:37 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:00:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	handle_redirect_in(t_internal_cmd *p, int *fd)
 			*fd = open(p->redirect_in, O_RDONLY);
 		dup2(*fd, STDIN_FILENO);
 		close(*fd);
+		if (!p->is_double && !can_open_file(p->redirect_in, R_OK, p->exit_code))
+			exit_routine(p->main);
 	}
 }
 

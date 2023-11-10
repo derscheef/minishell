@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:24:11 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/31 14:34:03 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 16:48:50 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 # include "utils.h"
 # include <errno.h>
 # include <stddef.h>
+# include <sys/stat.h>
 
 #endif
