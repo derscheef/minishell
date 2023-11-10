@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 17:31:38 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:37:10 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void	execute_command(t_cmd p)
 			p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL, p.node->data,
 			p.exit_code, false, p.main});
 	else if (p.node->type == NODE_REDIRECT_OUT_APPEND)
-		execute_simple_command((t_cmd){p.node->left, p.env, p.env_node,
-			p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL, p.node->data,
-			p.exit_code, true, p.main});
+		execute_simple_command((t_cmd){get_last_redirect(p.node, R_OK, p)->left,
+			p.env, p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write,
+			NULL, get_last_redirect(p.node, R_OK, p)->data, p.exit_code, true,
+			p.main});
 	else if (p.node->type == NODE_REDIRECT_IN_HEREDOC)
 		execute_heredoc(&p);
 }
