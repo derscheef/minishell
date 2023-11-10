@@ -29,7 +29,7 @@ UTILS_DIR = utils
 UTILS_FILES = ft_putchar.c ft_putstr.c split.c skip_to_set.c \
 debug/print_tokens.c \
 nodes/new.c nodes/destroy.c nodes/attach.c \
-env/replace_env_var.c env/get_env_var.c \
+env/replace_env_var.c env/get_env_var.c env/modify_or_add_env_var.c \
 
 
 EXECUTOR_DIR = executor

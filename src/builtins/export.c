@@ -6,53 +6,11 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:23:14 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/01 17:03:09 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:38:40 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	env_listadd_back(t_env_node **lst, t_env_node *new)
-{
-	t_env_node	*last;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	last = *lst;
-	while (last->next)
-		last = last->next;
-	last->next = new;
-}
-
-static void	modify_or_add_env(t_internal_cmd *main, char *key, char *value)
-{
-	t_env_node	*current;
-	t_env_node	*new_node;
-
-	current = main->env_node;
-	while (current)
-	{
-		if (current->key && key && ft_strlen(current->key) == ft_strlen(key)
-			&& ft_strncmp(current->key, key, ft_strlen(key)) == 0)
-		{
-			free(current->value);
-			current->value = ft_strdup(value);
-			return ;
-		}
-		current = current->next;
-	}
-	new_node = (t_env_node *)ft_calloc(1, sizeof(t_env_node));
-	if (!new_node)
-		return ;
-	new_node->key = ft_strdup(key);
-	new_node->value = ft_strdup(value);
-	env_listadd_back(&(main->env_node), new_node);
-}
 
 static int	is_valid_key(const char *key)
 {

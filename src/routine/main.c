@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 14:28:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:32:25 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*prompt_string(t_main *main)
 	result = ft_strjoin(temp, pwd);
 	free(temp);
 	temp = result;
-	result = ft_strjoin(temp, " $");
+	result = ft_strjoin(temp, " ❯ ");
 	free(temp);
 	return (result);
 }

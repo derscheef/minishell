@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:47:44 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 12:17:09 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 14:38:22 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	destroy_node(t_node *node);
 // ENV utils
 char	*replace_env_var(char *str, t_env_node *env_list, int exit_code);
 char	*get_env_var(char *key, t_env_node *env_list);
+void	modify_or_add_env(t_internal_cmd *main, char *key, char *value);
 
 #endif
