@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 11:43:40 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:10:09 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,51 @@ static void	reset_routine(t_main *main)
 			destroy_ast(main->ast);
 	}
 	main->lexer.tokens = NULL;
+	if (main->input)
+		free(main->input);
+	if (main->prompt)
+		free(main->prompt);
+}
+
+char	*get_env_value(t_main *main, char *key)
+{
+	t_env_node	*env;
+
+	env = main->env_list;
+	while (env != NULL)
+	{
+		if (strcmp(env->key, key) == 0)
+		{
+			return (env->value);
+		}
+		env = env->next;
+	}
+	return (NULL);
+}
+
+char	*prompt_string(t_main *main)
+{
+	char	*pwd;
+	char	*user;
+	char	*temp;
+	char	*result;
+
+	pwd = get_env_value(main, "PWD");
+	user = get_env_value(main, "USER");
+	temp = ft_strjoin(user, "@minishell ~");
+	result = ft_strjoin(temp, pwd);
+	free(temp);
+	temp = result;
+	result = ft_strjoin(temp, " $");
+	free(temp);
+	return (result);
 }
 
 void	routine(t_main *main)
 {
 	while (true)
 	{
-		main->input = readline("minishell> ");
+		main->input = readline((main->prompt = prompt_string(main)));
 		if (!main->input)
 			exit_routine(main);
 		add_history(main->input);
