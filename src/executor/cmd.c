@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 18:57:55 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 19:11:54 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static t_node	*get_last_redirect(t_node *node)
 
 static bool	check_file(t_node *node, int *exit_code)
 {
+	struct stat	buff;
+
 	if (node->type == NODE_REDIRECT_IN
 		|| node->type == NODE_REDIRECT_IN_HEREDOC)
 	{
@@ -35,6 +37,8 @@ static bool	check_file(t_node *node, int *exit_code)
 	else if (node->type == NODE_REDIRECT_OUT
 		|| node->type == NODE_REDIRECT_OUT_APPEND)
 	{
+		if (stat(node->data, &buff) == -1)
+			return (false);
 		if (access(node->data, W_OK) != 0)
 		{
 			*exit_code = 1;
