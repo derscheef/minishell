@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 19:11:54 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/11 02:10:47 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	execute_command(t_cmd p)
 			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write,
 			get_last_redirect(p.node)->data, NULL, p.exit_code, false, p.main});
 	else if (p.node->type == NODE_REDIRECT_OUT)
-		execute_simple_command((t_cmd){p.node->left, p.env, p.env_node,
-			p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL, p.node->data,
-			p.exit_code, false, p.main});
+		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
+			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
+			get_last_redirect(p.node)->data, p.exit_code, false, p.main});
 	else if (p.node->type == NODE_REDIRECT_OUT_APPEND)
 		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
 			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
