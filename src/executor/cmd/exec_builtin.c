@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 12:48:23 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/12 17:58:48 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ char	*convert_input(t_internal_cmd *p)
 
 void	execute_cmd_based_on_input(char *input, t_internal_cmd *p, int fd)
 {
-	if (ft_strncmp(input, "clear", 5) == 0)
-		*p->exit_code = clear_term();
-	else if (ft_strncmp(input, "exit", 4) == 0)
+	if (ft_strncmp(input, "exit", 4) == 0)
 		exit_builtin(input, p, p->main);
 	else if (ft_strncmp(input, "echo", 4) == 0)
 		*p->exit_code = execute_echo(p, fd);

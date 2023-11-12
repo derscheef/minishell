@@ -41,7 +41,7 @@ heredoc/main.c \
 
 
 BUILTINS_DIR = builtins
-BUILTINS_FILES = clear.c exit.c env.c pwd.c echo.c export.c unset.c cd.c
+BUILTINS_FILES = exit.c env.c pwd.c echo.c export.c unset.c cd.c
 
 ENV_DIR = env
 ENV_FILES = init.c print.c main.c destroy.c
