@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:02:28 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:18:58 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:03:38 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	execute_pipe(t_executor *p)
 	while (node && node->type == NODE_PIPE)
 	{
 		close(write_pipe);
-		pipe(fd);
+		if (pipe(fd) == -1)
+			exit(1);
 		write_pipe = fd[1];
 		execute_command((t_cmd){node->left, p->env, p->env_node, true, true,
 			read_pipe, write_pipe, NULL, NULL, p->exit_code, false, p->main});
