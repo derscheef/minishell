@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 14:32:25 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:43:53 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,25 @@ char	*prompt_string(t_main *main)
 	char	*user;
 	char	*temp;
 	char	*result;
+	char	*home;
+	char	*relative_pwd;
 
 	pwd = get_env_value(main, "PWD");
 	user = get_env_value(main, "USER");
-	temp = ft_strjoin(user, "@minishell ~");
-	result = ft_strjoin(temp, pwd);
+	home = get_env_value(main, "HOME");
+	if (strncmp(pwd, home, strlen(home)) == 0)
+	{
+		relative_pwd = pwd + strlen(home);
+		if (*relative_pwd == '/')
+			relative_pwd++;
+		temp = ft_strjoin(user, " @ ");
+		result = ft_strjoin(temp, relative_pwd);
+	}
+	else
+	{
+		temp = ft_strjoin(user, " @ ");
+		result = ft_strjoin(temp, pwd);
+	}
 	free(temp);
 	temp = result;
 	result = ft_strjoin(temp, " ❯ ");
