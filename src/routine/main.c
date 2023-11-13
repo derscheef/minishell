@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/13 18:43:53 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/13 21:22:53 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,11 @@ void	routine(t_main *main)
 			exit_routine(main);
 		add_history(main->input);
 		if (!lexer(main->input, ft_strlen(main->input), main))
+		{
 			remove_empty_tokens(&main->lexer);
-		parse(main);
-		execute(main);
+			parse(main);
+			execute(main);
+		}
 		reset_routine(main);
 	}
 }
