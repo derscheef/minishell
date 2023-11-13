@@ -6,7 +6,7 @@
 /*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/12 17:58:48 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:33:08 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	execute_builtin(t_internal_cmd *p)
 	}
 	else
 	{
-		restore_fds(original_stdout, original_stdin);
 		execute_cmd_based_on_input(input, p, fd);
+		restore_fds(original_stdout, original_stdin);
 	}
 }

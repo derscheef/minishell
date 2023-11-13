@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/10 14:39:45 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/13 12:03:16 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	exec_cd(t_internal_cmd *cmd)
 	if (chdir(input) != 0)
 		return (perror("cd error"), 1);
 	modify_or_add_env(cmd, "OLDPWD", old_pwd);
-	modify_or_add_env(cmd, "PWD", input);
+	getcwd(cwd, sizeof(cwd));
+	modify_or_add_env(cmd, "PWD", cwd);
 	return (0);
 }

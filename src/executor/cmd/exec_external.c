@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 17:00:04 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:30:49 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ char	*get_path(t_internal_cmd *p)
 
 	path = get_bin_path(p->env_node, p->av[0]);
 	if (!path)
+	{
 		path = ft_strdup(p->av[0]);
+	}
 	return (path);
 }
 
@@ -32,8 +34,6 @@ void	handle_redirect_in(t_internal_cmd *p, int *fd)
 			*fd = open(p->redirect_in, O_RDONLY);
 		dup2(*fd, STDIN_FILENO);
 		close(*fd);
-		if (!p->is_double && !can_open_file(p->redirect_in, R_OK, p->exit_code))
-			exit_routine(p->main);
 	}
 }
 
@@ -67,6 +67,8 @@ bool	execute_external(t_internal_cmd *p)
 	int		status;
 
 	path = get_path(p);
+	if (!path)
+		return (true);
 	set_to_ignore();
 	pid = fork();
 	if (pid == 0)

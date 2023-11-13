@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:06:16 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/06 23:31:55 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:40:26 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	execute_simple_command(t_cmd p)
 {
 	t_internal_cmd	*cmd;
 
+	if (!p.node)
+		return ;
 	cmd = &(t_internal_cmd){0, NULL, p.env, p.env_node, p.is_stdin, p.is_stdout,
 		p.fd_read, p.fd_write, p.redirect_in, p.redirect_out, p.exit_code,
 		p.is_double, p.main};
