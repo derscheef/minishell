@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:46:20 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 12:48:23 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/13 12:35:18 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	execute_builtin(t_internal_cmd *p)
 	}
 	else
 	{
-		restore_fds(original_stdout, original_stdin);
 		execute_cmd_based_on_input(input, p, fd);
+		restore_fds(original_stdout, original_stdin);
 	}
 }

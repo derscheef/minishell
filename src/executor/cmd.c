@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/11 02:10:47 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/13 13:21:30 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 static t_node	*get_last_redirect(t_node *node)
 {
+	int	type;
+	int	fd;
+
 	while (node->left->type == NODE_REDIRECT_IN
 		|| node->left->type == NODE_REDIRECT_OUT
 		|| node->left->type == NODE_REDIRECT_OUT_APPEND
 		|| node->left->type == NODE_REDIRECT_IN_HEREDOC)
 	{
+		type = node->type;
+		if (type == NODE_REDIRECT_OUT)
+			fd = open(node->data, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		else if (type == NODE_REDIRECT_OUT_APPEND)
+			fd = open(node->data, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		close(fd);
 		node = node->left;
 	}
 	return (node);
