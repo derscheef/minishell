@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command_type.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:14:12 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/08 18:39:32 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/12 17:58:25 by yscheef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static bool	is_builtin(char *input)
 {
-	if (!ft_strncmp(input, "clear", 5))
-		return (true);
-	else if (!ft_strncmp(input, "exit", 4))
+	if (!ft_strncmp(input, "exit", 4))
 		return (true);
 	else if (!ft_strncmp(input, "echo", 4))
 		return (true);

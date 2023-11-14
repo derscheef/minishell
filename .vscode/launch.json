@@ -3,7 +3,7 @@
   "configurations": [
 
     {
-      "name": "(gdb) Launch",
+      "name": "gdb",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/minishell",
@@ -30,7 +30,7 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug me",
+      "name": "lldb",
       "program": "${workspaceFolder}/minishell",
       "args": [],
       "cwd": "${workspaceFolder}",
