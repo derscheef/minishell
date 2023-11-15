@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:32:56 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/10 14:17:48 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/15 03:45:37 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	execute_bin(t_internal_cmd *p, char *path, int stdout_fd)
 			ft_putstr_fd(" command not found\n", STDERR_FILENO);
 		}
 	}
+	else
+		*p->exit_code = 0;
 }
 
 void	wait_for_child(t_internal_cmd *p, pid_t pid, int *status)

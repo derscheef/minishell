@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:28:12 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/10 19:03:54 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/15 03:35:04 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	handle_fd(t_internal_cmd *p)
 	fd = 1;
 	// if (p->redirect_in)
 	// 	fd = open_input_fd(p);
-	if (p->redirect_out)
-		fd = open_output_fd(p);
 	// if (p->is_stdin)
 	// {
 	// 	dup2(p->fd_read, STDIN_FILENO);
@@ -52,6 +50,8 @@ int	handle_fd(t_internal_cmd *p)
 		dup2(p->fd_write, STDOUT_FILENO);
 		fd = p->fd_write;
 	}
+	if (p->redirect_out)
+		fd = open_output_fd(p);
 	return (fd);
 }
 
