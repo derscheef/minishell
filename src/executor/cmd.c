@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/15 19:02:21 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/15 21:49:46 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 static t_node	*get_last_redirect(t_node *node)
 {
-	while (node->left->type == NODE_REDIRECT_IN
-		|| node->left->type == NODE_REDIRECT_OUT
-		|| node->left->type == NODE_REDIRECT_OUT_APPEND
-		|| node->left->type == NODE_REDIRECT_IN_HEREDOC)
+	t_node	*rv;
+
+	if (!node)
+		return (NULL);
+	rv = NULL;
+	if (node->type == NODE_REDIRECT_IN || node->type == NODE_REDIRECT_OUT
+		|| node->type == NODE_REDIRECT_OUT_APPEND
+		|| node->type == NODE_REDIRECT_IN_HEREDOC)
+		rv = node;
+	while (node->left && (node->left->type == NODE_REDIRECT_IN
+			|| node->left->type == NODE_REDIRECT_OUT
+			|| node->left->type == NODE_REDIRECT_OUT_APPEND
+			|| node->left->type == NODE_REDIRECT_IN_HEREDOC))
 	{
+		rv = node->left;
 		node = node->left;
 	}
-	return (node);
+	return (rv);
 }
 
 static t_node	*get_last_specific_redirect(t_node *node, bool is_in)
@@ -91,31 +101,49 @@ static bool	check_files(t_node *node, int *exit_code)
 	return (false);
 }
 
+t_cmd	prepare_command(t_cmd p)
+{
+	t_cmd	new_cmd;
+	t_node	*tmp;
+
+	new_cmd = (t_cmd){p.node, p.env, p.env_node, p.is_stdin, p.is_stdout,
+		p.fd_read, p.fd_write, NULL, NULL, p.exit_code, false, p.main};
+	tmp = get_last_redirect(p.node);
+	if (tmp)
+		new_cmd.node = tmp->left;
+	tmp = get_last_specific_redirect(p.node, true);
+	if (tmp)
+	{
+		new_cmd.redirect_in = tmp->data;
+		if (tmp->type == NODE_REDIRECT_IN_HEREDOC)
+			new_cmd.is_double = true;
+	}
+	tmp = get_last_specific_redirect(p.node, false);
+	if (tmp)
+	{
+		new_cmd.redirect_out = tmp->data;
+		if (tmp->type == NODE_REDIRECT_OUT_APPEND)
+			new_cmd.is_double = true;
+	}
+	return (new_cmd);
+}
+
 void	execute_command(t_cmd p)
 {
 	if (!p.node)
 		return ;
 	if (check_files(p.node, p.exit_code))
 		return ;
-	if (p.node->type == NODE_CMDPATH)
-		execute_simple_command((t_cmd){p.node, p.env, p.env_node, p.is_stdin,
-			p.is_stdout, p.fd_read, p.fd_write, NULL, NULL, p.exit_code, false,
-			p.main});
-	else if (p.node->type == NODE_REDIRECT_IN)
-		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
-			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write,
-			get_last_specific_redirect(p.node, true)->data, NULL, p.exit_code,
-			false, p.main});
-	else if (p.node->type == NODE_REDIRECT_OUT)
-		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
-			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
-			get_last_specific_redirect(p.node, false)->data, p.exit_code, false,
-			p.main});
-	else if (p.node->type == NODE_REDIRECT_OUT_APPEND)
-		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
-			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
-			get_last_specific_redirect(p.node, false)->data, p.exit_code, true,
-			p.main});
+
+	if (p.node->type == NODE_CMDPATH || p.node->type == NODE_REDIRECT_IN
+		|| p.node->type == NODE_REDIRECT_OUT
+		|| p.node->type == NODE_REDIRECT_OUT_APPEND)
+	{
+		t_cmd new_cmd = prepare_command(p);
+		execute_simple_command(new_cmd);
+	}
 	else if (p.node->type == NODE_REDIRECT_IN_HEREDOC)
+	{
 		execute_heredoc(&p);
+	}
 }
