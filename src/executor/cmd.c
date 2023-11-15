@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/13 13:40:35 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/15 02:25:55 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ static t_node	*get_last_redirect(t_node *node)
 		node = node->left;
 	}
 	return (node);
+}
+
+static t_node	*get_last_specific_redirect(t_node *node, bool is_in)
+{
+	t_node	*return_node;
+
+	return_node = NULL;
+	while (node)
+	{
+		if (is_in && (node->type == NODE_REDIRECT_IN
+				|| node->type == NODE_REDIRECT_IN_HEREDOC))
+			return_node = node;
+		else if (!is_in && (node->type == NODE_REDIRECT_OUT
+				|| node->type == NODE_REDIRECT_OUT_APPEND))
+			return_node = node;
+		node = node->left;
+	}
+	return (return_node);
 }
 
 static bool	check_file(t_node *node, int *exit_code)
@@ -82,15 +100,18 @@ void	execute_command(t_cmd p)
 	else if (p.node->type == NODE_REDIRECT_IN)
 		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
 			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write,
-			get_last_redirect(p.node)->data, NULL, p.exit_code, false, p.main});
+			get_last_specific_redirect(p.node, true)->data, NULL, p.exit_code,
+			false, p.main});
 	else if (p.node->type == NODE_REDIRECT_OUT)
 		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
 			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
-			get_last_redirect(p.node)->data, p.exit_code, false, p.main});
+			get_last_specific_redirect(p.node, false)->data, p.exit_code, false,
+			p.main});
 	else if (p.node->type == NODE_REDIRECT_OUT_APPEND)
 		execute_simple_command((t_cmd){get_last_redirect(p.node)->left, p.env,
 			p.env_node, p.is_stdin, p.is_stdout, p.fd_read, p.fd_write, NULL,
-			get_last_redirect(p.node)->data, p.exit_code, true, p.main});
+			get_last_specific_redirect(p.node, false)->data, p.exit_code, true,
+			p.main});
 	else if (p.node->type == NODE_REDIRECT_IN_HEREDOC)
 		execute_heredoc(&p);
 }
