@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:03:58 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/15 02:25:55 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:02:21 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 static t_node	*get_last_redirect(t_node *node)
 {
-	int	type;
-	int	fd;
-
 	while (node->left->type == NODE_REDIRECT_IN
 		|| node->left->type == NODE_REDIRECT_OUT
 		|| node->left->type == NODE_REDIRECT_OUT_APPEND
 		|| node->left->type == NODE_REDIRECT_IN_HEREDOC)
 	{
-		type = node->type;
-		if (type == NODE_REDIRECT_OUT)
-			fd = open(node->data, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		else if (type == NODE_REDIRECT_OUT_APPEND)
-			fd = open(node->data, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		close(fd);
 		node = node->left;
 	}
 	return (node);
@@ -54,7 +45,10 @@ static t_node	*get_last_specific_redirect(t_node *node, bool is_in)
 static bool	check_file(t_node *node, int *exit_code)
 {
 	struct stat	buff;
+	int			type;
+	int			fd;
 
+	fd = 0;
 	if (node->type == NODE_REDIRECT_IN
 		|| node->type == NODE_REDIRECT_IN_HEREDOC)
 	{
@@ -64,15 +58,25 @@ static bool	check_file(t_node *node, int *exit_code)
 	else if (node->type == NODE_REDIRECT_OUT
 		|| node->type == NODE_REDIRECT_OUT_APPEND)
 	{
-		if (stat(node->data, &buff) == -1)
-			return (false);
-		if (access(node->data, W_OK) != 0)
+		if (stat(node->data, &buff) != -1)
 		{
-			*exit_code = 1;
-			ft_putstr_fd(" Permission denied\n", STDERR_FILENO);
-			return (true);
+			if (access(node->data, W_OK) != 0)
+			{
+				*exit_code = 1;
+				ft_putstr_fd(" Permission denied\n", STDERR_FILENO);
+				return (true);
+			}
 		}
 	}
+	else
+		return (false);
+	type = node->type;
+	if (type == NODE_REDIRECT_OUT)
+		fd = open(node->data, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else if (type == NODE_REDIRECT_OUT_APPEND)
+		fd = open(node->data, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (type == NODE_REDIRECT_OUT || type == NODE_REDIRECT_OUT_APPEND)
+		close(fd);
 	return (false);
 }
 
