@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:25:01 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/15 02:32:18 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/17 00:12:06 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ t_node	*parse_cmd1(t_parse_program *p)
 
 	return_node = NULL;
 	arg = NULL;
-	scmd_node = parse_simple_cmd(p);
-	if (!scmd_node)
-		return (NULL);
+	scmd_node = NULL;
 	is_loop = false;
 	while (true)
 	{
@@ -47,7 +45,11 @@ t_node	*parse_cmd1(t_parse_program *p)
 			temp = new_node(NULL, NODE_REDIRECT_IN_HEREDOC);
 		else if (!consume_token(TOKEN, &arg, p))
 		{
-			attach_to_last_node(scmd_node, new_node(arg, NODE_ARGUMENT), NULL);
+			if (!scmd_node)
+				scmd_node = new_node(arg, NODE_CMDPATH);
+			else
+				attach_to_last_node(scmd_node, new_node(arg, NODE_ARGUMENT),
+					NULL);
 			continue ;
 		}
 		else
