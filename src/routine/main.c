@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:43:50 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/13 21:22:53 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/16 22:34:08 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,6 @@ static void	reset_routine(t_main *main)
 		free(main->prompt);
 }
 
-char	*get_env_value(t_main *main, char *key)
-{
-	t_env_node	*env;
-
-	env = main->env_list;
-	while (env != NULL)
-	{
-		if (strcmp(env->key, key) == 0)
-		{
-			return (env->value);
-		}
-		env = env->next;
-	}
-	return (NULL);
-}
-
 char	*prompt_string(t_main *main)
 {
 	char	*pwd;
@@ -61,9 +45,11 @@ char	*prompt_string(t_main *main)
 	char	*home;
 	char	*relative_pwd;
 
-	pwd = get_env_value(main, "PWD");
-	user = get_env_value(main, "USER");
-	home = get_env_value(main, "HOME");
+	pwd = get_env_var("PWD", main->env_list);
+	user = get_env_var("USER", main->env_list);
+	home = get_env_var("HOME", main->env_list);
+	if (!pwd || !user || !home)
+		return (ft_strdup("minishell ❯ "));
 	if (strncmp(pwd, home, strlen(home)) == 0)
 	{
 		relative_pwd = pwd + strlen(home);
