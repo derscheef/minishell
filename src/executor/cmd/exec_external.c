@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:25:34 by ndivjak           #+#    #+#             */
-/*   Updated: 2023/11/15 03:41:35 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/16 22:55:38 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ bool	execute_external(t_internal_cmd *p)
 	{
 		handle_signals();
 		stdout_fd = dup(STDOUT_FILENO);
+		handle_stdin_stdout(p);
 		handle_redirect_in(p, &fd);
 		handle_redirect_out(p, &fd);
-		handle_stdin_stdout(p);
 		execute_bin(p, path, stdout_fd);
 		free(path);
 		exit(*p->exit_code);
