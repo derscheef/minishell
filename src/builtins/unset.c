@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yscheef <yscheef@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:40:26 by yscheef           #+#    #+#             */
-/*   Updated: 2023/10/31 17:41:33 by yscheef          ###   ########.fr       */
+/*   Updated: 2023/11/16 22:40:55 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	remove_env_node(t_env_node **head, char *key)
 	curr = *head;
 	while (curr)
 	{
-		if (!ft_strncmp(curr->key, key, ft_strlen(key))
-			|| !ft_strncmp(curr->value, key, ft_strlen(key)))
+		if (!ft_strcmp(curr->key, key))
 		{
 			if (prev)
 				prev->next = curr->next;
@@ -52,7 +51,7 @@ int	exec_unset(char *input, t_internal_cmd *main)
 	key = parse_key(input);
 	if (key)
 	{
-		remove_env_node(&main->env_node, key);
+		remove_env_node(&main->main->env_list, key);
 		free(key);
 	}
 	return (0);
