@@ -6,7 +6,7 @@
 /*   By: ndivjak <ndivjak@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:09 by yscheef           #+#    #+#             */
-/*   Updated: 2023/11/13 12:03:16 by ndivjak          ###   ########.fr       */
+/*   Updated: 2023/11/16 22:21:42 by ndivjak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	exec_cd(t_internal_cmd *cmd)
 	char	*input;
 	char	*old_pwd;
 
+	if (cmd->ac > 2)
+	{
+		ft_putstr_fd(" too many arguments", STDERR_FILENO);
+		return (1);
+	}
 	if (cmd->ac < 2)
 		input = getenv("HOME");
 	else
